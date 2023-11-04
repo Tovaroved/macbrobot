@@ -1,0 +1,129 @@
+<html lang="ru"><head><style type="text/css" data-tag-name="trix-editor">trix-editor {
+  display: block;
+}
+
+trix-editor:empty:not(:focus)::before {
+  content: attr(placeholder);
+  color: graytext;
+  cursor: text;
+  pointer-events: none;
+}
+
+trix-editor a[contenteditable=false] {
+  cursor: text;
+}
+
+trix-editor img {
+  max-width: 100%;
+  height: auto;
+}
+
+trix-editor [data-trix-attachment] figcaption textarea {
+  resize: none;
+}
+
+trix-editor [data-trix-attachment] figcaption textarea.trix-autoresize-clone {
+  position: absolute;
+  left: -9999px;
+  max-height: 0px;
+}
+
+trix-editor [data-trix-attachment] figcaption[data-trix-placeholder]:empty::before {
+  content: attr(data-trix-placeholder);
+  color: graytext;
+}
+
+trix-editor [data-trix-cursor-target] {
+  display: inline-block !important;
+  width: 1px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: none !important;
+}
+
+trix-editor [data-trix-cursor-target=left] {
+  vertical-align: top !important;
+  margin-left: -1px !important;
+}
+
+trix-editor [data-trix-cursor-target=right] {
+  vertical-align: bottom !important;
+  margin-right: -1px !important;
+}</style><style type="text/css" data-tag-name="trix-toolbar">trix-toolbar {
+  display: block;
+}
+
+trix-toolbar {
+  white-space: nowrap;
+}
+
+trix-toolbar [data-trix-dialog] {
+  display: none;
+}
+
+trix-toolbar [data-trix-dialog][data-trix-active] {
+  display: block;
+}
+
+trix-toolbar [data-trix-dialog] [data-trix-validate]:invalid {
+  background-color: #ffdddd;
+}</style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <title>
+        
+  Войти
+ ·
+      Lifeshop
+    </title>
+
+    <meta name="csrf-param" content="authenticity_token">
+<meta name="csrf-token" content="HMVL93ZU4XviZab4WrEFRc83UplHTTvTYWKDYceIPKFawqjq0EQxPTf7DjY7i8mqpBJ_BTsXu-M9ImhLF2A7vQ">
+    
+
+    <link rel="stylesheet" href="/assets/application-4bd5139e8e155afb43a9ee736cfa0c82b17c68e0491536ac56aab470c28443b6.css">
+    <script src="/assets/application-0350c42a83c65facc8c3e4983c9d6b311121490b7bee30b08317425248d0f846.js" defer="defer"></script>
+
+    <style>
+      body, html {
+        height: 100%;
+        display: grid;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="antialiased text-gray-900 w-full max-w-md m-auto px-6 md:py-12">
+
+      <a href="https://lifeshop.kg"><img class="w-24 h-24 mx-auto mb-5" src="/assets/logo-3cd5b98738c66d0c9b5dd896dd65567c4d0566716c36a078279cc1e5545b2f1e.png"></a>
+
+      
+<h2 class="text-center mb-4 md:mb-8">Войти</h2>
+
+<form class="new_user" id="new_user" action="/auth/login" accept-charset="UTF-8" method="post"><input type="hidden" name="authenticity_token" value="HMVL93ZU4XviZab4WrEFRc83UplHTTvTYWKDYceIPKFawqjq0EQxPTf7DjY7i8mqpBJ_BTsXu-M9ImhLF2A7vQ" autocomplete="off">
+  <div class="devise-form-wrapper">
+    <div>
+      <label class="form-label" for="user_email">Email адрес</label>
+      <input class="form-input" autofocus="autofocus" autocomplete="email" type="email" value="" name="user[email]" id="user_email">
+    </div>
+
+    <div>
+      <div class="flex justify-between">
+        <label class="form-label" for="user_password">Пароль</label>
+        <a href="/auth/password/new">Забыли пароль?</a>
+      </div>
+      <input class="form-input" autocomplete="current-password" type="password" name="user[password]" id="user_password">
+    </div>
+
+    <input type="submit" name="commit" value="Войти" class="btn btn-primary" data-disable-with="Войти">
+  </div>
+</form>
+<div class="text-center mt-8">
+  Нет учетной записи? <a href="/auth/sign_up">Регистрация</a>
+</div>
+
+    </div>
+  
+
+</body></html>

@@ -1,0 +1,709 @@
+<html lang="ru"><head><style type="text/css" data-tag-name="trix-editor">trix-editor {
+  display: block;
+}
+
+trix-editor:empty:not(:focus)::before {
+  content: attr(placeholder);
+  color: graytext;
+  cursor: text;
+  pointer-events: none;
+}
+
+trix-editor a[contenteditable=false] {
+  cursor: text;
+}
+
+trix-editor img {
+  max-width: 100%;
+  height: auto;
+}
+
+trix-editor [data-trix-attachment] figcaption textarea {
+  resize: none;
+}
+
+trix-editor [data-trix-attachment] figcaption textarea.trix-autoresize-clone {
+  position: absolute;
+  left: -9999px;
+  max-height: 0px;
+}
+
+trix-editor [data-trix-attachment] figcaption[data-trix-placeholder]:empty::before {
+  content: attr(data-trix-placeholder);
+  color: graytext;
+}
+
+trix-editor [data-trix-cursor-target] {
+  display: inline-block !important;
+  width: 1px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: none !important;
+}
+
+trix-editor [data-trix-cursor-target=left] {
+  vertical-align: top !important;
+  margin-left: -1px !important;
+}
+
+trix-editor [data-trix-cursor-target=right] {
+  vertical-align: bottom !important;
+  margin-right: -1px !important;
+}</style><style type="text/css" data-tag-name="trix-toolbar">trix-toolbar {
+  display: block;
+}
+
+trix-toolbar {
+  white-space: nowrap;
+}
+
+trix-toolbar [data-trix-dialog] {
+  display: none;
+}
+
+trix-toolbar [data-trix-dialog][data-trix-active] {
+  display: block;
+}
+
+trix-toolbar [data-trix-dialog] [data-trix-validate]:invalid {
+  background-color: #ffdddd;
+}</style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <title>
+        
+    Посылки
+ ·
+      Lifeshop
+    </title>
+
+    <meta name="csrf-param" content="authenticity_token">
+<meta name="csrf-token" content="5-gtP_ZZmo_006ttnEygnJlpzN2ULYELhHjCAwfQibsgjS2hZH9HCxkleYNBHMIu-EZvYZM5XFPi6Sbz9I207Q">
+    
+
+    <link rel="stylesheet" href="/assets/application-4bd5139e8e155afb43a9ee736cfa0c82b17c68e0491536ac56aab470c28443b6.css">
+    <script src="/assets/application-0350c42a83c65facc8c3e4983c9d6b311121490b7bee30b08317425248d0f846.js" defer="defer"></script>
+  </head>
+
+  <body>
+    <div class="antialiased text-gray-900">
+      <div class="px-6 md:px-0">
+        <div class="relative py-6 md:hidden" data-controller="mobile-menu-toggle" data-mobile-menu-toggle-open-value="false">
+  <div class="flex items-center">
+    <a class="text-2xl font-bold text-gray-900 hover:text-gray-900" href="/">Lifeshop</a>
+
+
+    <div class="ml-auto">
+      <button data-action="click->mobile-menu-toggle#open" data-mobile-menu-toggle-target="button-open" type="button" class="p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 bg-white hover:bg-gray-100 rounded-md">
+        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <div data-mobile-menu-toggle-target="menu" class="absolute z-10 top-6 inset-x-0 p-2" hidden="">
+    <div class="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 bg-white divide-y-2 divide-gray-50">
+      <div class="px-5 pt-5 pb-6">
+        <div class="flex items-center justify-between">
+          <a class="text-2xl font-bold text-gray-900 hover:text-gray-900" href="/">Lifeshop</a>
+
+
+          <div class="-mr-2">
+            <button data-action="click->mobile-menu-toggle#close" data-mobile-menu-toggle-target="button-close" type="button" class="p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 bg-white hover:bg-gray-100 rounded-md">
+              <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="my-6">
+          <nav class="grid gap-y-8">
+              <a class="-m-3 p-3 flex items-center rounded-md hover:bg-gray-50" href="/">
+  <span class="ml-3 text-base font-medium text-gray-900">
+    Посылки
+  </span>
+</a>
+              <a class="-m-3 p-3 flex items-center rounded-md hover:bg-gray-50" href="/address_usa">
+  <span class="ml-3 text-base font-medium text-gray-900">
+    Мой адрес в США
+  </span>
+</a>
+          </nav>
+        </div>
+
+        <div class="border-t border-gray-100 py-6 space-y-6">
+          <div class="grid gap-y-4">
+            <span class="text-base font-medium text-gray-500">
+                          Sulaimanov Meken
+
+            </span>
+                        <a class="ml-3 text-base font-medium text-gray-900 hover:text-gray-700" href="/auth/edit.2475">Аккаунт</a>
+            <a class="ml-3 text-base font-medium text-gray-900 hover:text-gray-700" href="/recipient/edit.2475">Получатель</a>
+            <a class="ml-3 text-base font-medium text-gray-900 hover:text-gray-700" rel="nofollow" data-method="delete" href="/auth/logout">Выйти</a>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+        <div class="hidden md:block md:fixed md:top-0 md:left-0 md:w-64 md:h-screen md:bg-stone-100 md:px-6 md:py-6">
+  <div class="h-32">
+    <a class="text-2xl font-bold text-gray-900 hover:text-gray-900" href="/">Lifeshop</a>
+
+  </div>
+
+  <div>
+    <div class="grid grid-cols-1 gap-y-3">
+        <a class="text-base font-medium text-gray-900 hover:text-blue-600 text-blue-600" href="/">Посылки</a>
+
+        <a class="text-base font-medium text-gray-900 hover:text-blue-600" href="/address_usa">Мой адрес в США</a>
+
+    </div>
+  </div>
+
+  <div class="absolute left-0 bottom-0 w-64 px-6 mb-8" data-controller="collapse">
+    <div data-action="click->collapse#toggle" class="cursor-pointer select-none flex items-center justify-between">
+                  Sulaimanov Meken
+
+      <svg xmlns="http://www.w3.org/2000/svg" data-collapse-target="icon" class="h-4 w-4 fill-current" viewBox="0 0 512 512"><path d="M414 321.94L274.22 158.82a24 24 0 00-36.44 0L98 321.94c-13.34 15.57-2.28 39.62 18.22 39.62h279.6c20.5 0 31.56-24.05 18.18-39.62z"></path></svg>
+    </div>
+    <div data-collapse-target="content" hidden="">
+                  <div class="mt-4 grid grid-cols-1 gap-y-2 font-medium">
+              <a class="text-gray-900" href="/auth/edit.2475">Аккаунт</a>
+              <a class="text-gray-900" href="/recipient/edit.2475">Получатель</a>
+              <a class="text-gray-900" rel="nofollow" data-method="delete" href="/auth/logout">Выйти</a>
+            </div>
+
+    </div>
+  </div>
+</div>
+
+        <main class="md:ml-80 my-8 md:my-32 max-w-4xl">
+            <div class="mb-8">
+              <div class="max-w-2xl px-4 py-3 font-medium rounded-md bg-sky-100 text-sky-800">
+  Вход в систему выполнен.
+</div>
+
+            </div>
+
+          <div class="flex flex-wrap items-center gap-x-3 mb-4 md:mb-8">
+  
+  <h1 class="text-3xl md:text-4xl">Посылки</h1>
+
+
+    <div class="mt-4 md:mt-0 w-full md:w-auto md:ml-auto">
+          <a class="btn btn-primary" href="/packages/new">Добавить посылку</a>
+
+    </div>
+</div>
+
+  <div class="mt-8 border border-gray-200 rounded-md divide-y">
+  
+    <div class="relative px-5 py-3 space-y-1">
+  
+  <div class="flex items-center gap-x-3">
+    <div class="block space-y-1 md:space-y-0 md:flex md:items-center md:gap-x-3">
+      <div class="font-semibold text-gray-900 w-56 md:w-auto truncate">1Z2479X43529938873</div>
+
+
+      <div class="flex items-center gap-x-1">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-500 fill-current" viewBox="0 0 512 512"><path d="M272 464a16 16 0 01-16-16.42V264.13a8 8 0 00-8-8H64.41a16.31 16.31 0 01-15.49-10.65 16 16 0 018.41-19.87l384-176.15a16 16 0 0121.22 21.19l-176 384A16 16 0 01272 464z"></path></svg>
+        <span class="text-gray-600">Ожидаем</span>
+      </div>
+    </div>    
+  </div>
+
+  <div class="text-sm text-gray-700">
+  iPhone Pro 14 128 ⨯
+  620.0 ⨯
+  1
+</div>
+
+
+  <div class="text-xs text-gray-500">
+    Добавлена 2023-10-20, обновлена 2023-10-20
+  </div>
+
+  <div class="absolute top-0 pt-2.5 right-5">
+  
+    <a class="text-gray-400 hover:text-red-500" rel="nofollow" data-method="delete" href="/packages/55204">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 fill-current" viewBox="0 0 512 512"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M368 368L144 144M368 144L144 368"></path></svg>
+</a>
+</div>
+
+</div>
+<div class="relative px-5 py-3 space-y-1">
+  
+  <div class="flex items-center gap-x-3">
+    <div class="block space-y-1 md:space-y-0 md:flex md:items-center md:gap-x-3">
+      <div class="font-semibold text-gray-900 w-56 md:w-auto truncate">785163309295</div>
+
+        <div class="w-fit rounded-full px-2 text-sm font-medium bg-lime-100 text-lime-600">
+  
+          3.5 кг
+
+</div>
+
+      <div class="flex items-center gap-x-1">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-500 fill-current" viewBox="0 0 512 512"><path d="M272 464a16 16 0 01-16-16.42V264.13a8 8 0 00-8-8H64.41a16.31 16.31 0 01-15.49-10.65 16 16 0 018.41-19.87l384-176.15a16 16 0 0121.22 21.19l-176 384A16 16 0 01272 464z"></path></svg>
+        <span class="text-gray-600">Готова к отправке</span>
+      </div>
+    </div>    
+  </div>
+
+  <div class="text-sm text-gray-700">
+  Logitech MX Keys S Combo &amp; Mouse &amp; Palm Rest ⨯
+  139.0 ⨯
+  2
+</div>
+
+
+  <div class="text-xs text-gray-500">
+    Добавлена 2023-10-19, обновлена 2023-10-19
+  </div>
+
+  <div class="absolute top-0 pt-2.5 right-5">
+  
+    <a class="text-gray-400 hover:text-red-500" rel="nofollow" data-method="delete" href="/packages/55047">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 fill-current" viewBox="0 0 512 512"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M368 368L144 144M368 144L144 368"></path></svg>
+</a>
+</div>
+
+</div>
+<div class="relative px-5 py-3 space-y-1">
+  
+  <div class="flex items-center gap-x-3">
+    <div class="block space-y-1 md:space-y-0 md:flex md:items-center md:gap-x-3">
+      <div class="font-semibold text-gray-900 w-56 md:w-auto truncate">1Z1978XVDK21501133</div>
+
+        <div class="w-fit rounded-full px-2 text-sm font-medium bg-lime-100 text-lime-600">
+  
+          0.7 кг
+
+</div>
+
+      <div class="flex items-center gap-x-1">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-500 fill-current" viewBox="0 0 512 512"><path d="M272 464a16 16 0 01-16-16.42V264.13a8 8 0 00-8-8H64.41a16.31 16.31 0 01-15.49-10.65 16 16 0 018.41-19.87l384-176.15a16 16 0 0121.22 21.19l-176 384A16 16 0 01272 464z"></path></svg>
+        <span class="text-gray-600">Отправлена</span>
+      </div>
+    </div>    
+  </div>
+
+  <div class="text-sm text-gray-700">
+  Beats Studio Pro ⨯
+  180.0 ⨯
+  1
+</div>
+
+
+  <div class="text-xs text-gray-500">
+    Добавлена 2023-10-12, обновлена 2023-10-18
+  </div>
+
+  <div class="absolute top-0 pt-2.5 right-5">
+  
+    <a class="text-gray-400 hover:text-red-500" rel="nofollow" data-method="delete" href="/packages/54064">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 fill-current" viewBox="0 0 512 512"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M368 368L144 144M368 144L144 368"></path></svg>
+</a>
+</div>
+
+</div>
+<div class="relative px-5 py-3 space-y-1">
+  
+  <div class="flex items-center gap-x-3">
+    <div class="block space-y-1 md:space-y-0 md:flex md:items-center md:gap-x-3">
+      <div class="font-semibold text-gray-900 w-56 md:w-auto truncate">9405508205498212007371</div>
+
+        <div class="w-fit rounded-full px-2 text-sm font-medium bg-lime-100 text-lime-600">
+  
+          0.9 кг
+
+</div>
+
+      <div class="flex items-center gap-x-1">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-500 fill-current" viewBox="0 0 512 512"><path d="M272 464a16 16 0 01-16-16.42V264.13a8 8 0 00-8-8H64.41a16.31 16.31 0 01-15.49-10.65 16 16 0 018.41-19.87l384-176.15a16 16 0 0121.22 21.19l-176 384A16 16 0 01272 464z"></path></svg>
+        <span class="text-gray-600">Отправлена</span>
+      </div>
+    </div>    
+  </div>
+
+  <div class="text-sm text-gray-700">
+  iPad 10th 64gb wifi blue ⨯
+  380.0 ⨯
+  1
+</div>
+
+
+  <div class="text-xs text-gray-500">
+    Добавлена 2023-10-09, обновлена 2023-10-18
+  </div>
+
+  <div class="absolute top-0 pt-2.5 right-5">
+  
+    <a class="text-gray-400 hover:text-red-500" rel="nofollow" data-method="delete" href="/packages/53603">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 fill-current" viewBox="0 0 512 512"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M368 368L144 144M368 144L144 368"></path></svg>
+</a>
+</div>
+
+</div>
+<div class="relative px-5 py-3 space-y-1">
+  
+  <div class="flex items-center gap-x-3">
+    <div class="block space-y-1 md:space-y-0 md:flex md:items-center md:gap-x-3">
+      <div class="font-semibold text-gray-900 w-56 md:w-auto truncate">1ZAC98180365721326</div>
+
+        <div class="w-fit rounded-full px-2 text-sm font-medium bg-lime-100 text-lime-600">
+  
+          0.6 кг
+
+</div>
+
+      <div class="flex items-center gap-x-1">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-500 fill-current" viewBox="0 0 512 512"><path d="M272 464a16 16 0 01-16-16.42V264.13a8 8 0 00-8-8H64.41a16.31 16.31 0 01-15.49-10.65 16 16 0 018.41-19.87l384-176.15a16 16 0 0121.22 21.19l-176 384A16 16 0 01272 464z"></path></svg>
+        <span class="text-gray-600">Прибыла</span>
+      </div>
+    </div>    
+  </div>
+
+  <div class="text-sm text-gray-700">
+  iPad 8th 32GB Silver + ⨯
+  150.0 ⨯
+  1
+</div>
+
+
+  <div class="text-xs text-gray-500">
+    Добавлена 2023-10-09, обновлена 2023-10-18
+  </div>
+
+  <div class="absolute top-0 pt-2.5 right-5">
+  
+    <a class="text-gray-400 hover:text-red-500" rel="nofollow" data-method="delete" href="/packages/53600">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 fill-current" viewBox="0 0 512 512"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M368 368L144 144M368 144L144 368"></path></svg>
+</a>
+</div>
+
+</div>
+<div class="relative px-5 py-3 space-y-1">
+  
+  <div class="flex items-center gap-x-3">
+    <div class="block space-y-1 md:space-y-0 md:flex md:items-center md:gap-x-3">
+      <div class="font-semibold text-gray-900 w-56 md:w-auto truncate">9405511202269492090864</div>
+
+        <div class="w-fit rounded-full px-2 text-sm font-medium bg-lime-100 text-lime-600">
+  
+          0.4 кг
+
+</div>
+
+      <div class="flex items-center gap-x-1">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-500 fill-current" viewBox="0 0 512 512"><path d="M272 464a16 16 0 01-16-16.42V264.13a8 8 0 00-8-8H64.41a16.31 16.31 0 01-15.49-10.65 16 16 0 018.41-19.87l384-176.15a16 16 0 0121.22 21.19l-176 384A16 16 0 01272 464z"></path></svg>
+        <span class="text-gray-600">Прибыла</span>
+      </div>
+    </div>    
+  </div>
+
+  <div class="text-sm text-gray-700">
+  Apple MagSafe Duo ⨯
+  68.0 ⨯
+  1
+</div>
+
+
+  <div class="text-xs text-gray-500">
+    Добавлена 2023-10-09, обновлена 2023-10-18
+  </div>
+
+  <div class="absolute top-0 pt-2.5 right-5">
+  
+    <a class="text-gray-400 hover:text-red-500" rel="nofollow" data-method="delete" href="/packages/53602">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 fill-current" viewBox="0 0 512 512"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M368 368L144 144M368 144L144 368"></path></svg>
+</a>
+</div>
+
+</div>
+<div class="relative px-5 py-3 space-y-1">
+  
+  <div class="flex items-center gap-x-3">
+    <div class="block space-y-1 md:space-y-0 md:flex md:items-center md:gap-x-3">
+      <div class="font-semibold text-gray-900 w-56 md:w-auto truncate">EM099418149CA</div>
+
+        <div class="w-fit rounded-full px-2 text-sm font-medium bg-lime-100 text-lime-600">
+  
+          2.3 кг
+
+</div>
+
+      <div class="flex items-center gap-x-1">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-500 fill-current" viewBox="0 0 512 512"><path d="M272 464a16 16 0 01-16-16.42V264.13a8 8 0 00-8-8H64.41a16.31 16.31 0 01-15.49-10.65 16 16 0 018.41-19.87l384-176.15a16 16 0 0121.22 21.19l-176 384A16 16 0 01272 464z"></path></svg>
+        <span class="text-gray-600">Прибыла</span>
+      </div>
+    </div>    
+  </div>
+
+  <div class="text-sm text-gray-700">
+  Air 13 i3 16/256 SG + ⨯
+  430.0 ⨯
+  1
+</div>
+
+
+  <div class="text-xs text-gray-500">
+    Добавлена 2023-10-09, обновлена 2023-10-18
+  </div>
+
+  <div class="absolute top-0 pt-2.5 right-5">
+  
+    <a class="text-gray-400 hover:text-red-500" rel="nofollow" data-method="delete" href="/packages/53601">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 fill-current" viewBox="0 0 512 512"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M368 368L144 144M368 144L144 368"></path></svg>
+</a>
+</div>
+
+</div>
+<div class="relative px-5 py-3 space-y-1">
+  
+  <div class="flex items-center gap-x-3">
+    <div class="block space-y-1 md:space-y-0 md:flex md:items-center md:gap-x-3">
+      <div class="font-semibold text-gray-900 w-56 md:w-auto truncate">784321908747</div>
+
+        <div class="w-fit rounded-full px-2 text-sm font-medium bg-lime-100 text-lime-600">
+  
+          12.5 кг
+
+</div>
+
+      <div class="flex items-center gap-x-1">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-500 fill-current" viewBox="0 0 512 512"><path d="M272 464a16 16 0 01-16-16.42V264.13a8 8 0 00-8-8H64.41a16.31 16.31 0 01-15.49-10.65 16 16 0 018.41-19.87l384-176.15a16 16 0 0121.22 21.19l-176 384A16 16 0 01272 464z"></path></svg>
+        <span class="text-gray-600">Прибыла</span>
+      </div>
+    </div>    
+  </div>
+
+  <div class="text-sm text-gray-700">
+  Studio Display ⨯
+  1020.0 ⨯
+  1
+</div>
+
+
+  <div class="text-xs text-gray-500">
+    Добавлена 2023-09-28, обновлена 2023-10-15
+  </div>
+
+  <div class="absolute top-0 pt-2.5 right-5">
+  
+    <a class="text-gray-400 hover:text-red-500" rel="nofollow" data-method="delete" href="/packages/52481">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 fill-current" viewBox="0 0 512 512"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M368 368L144 144M368 144L144 368"></path></svg>
+</a>
+</div>
+
+</div>
+<div class="relative px-5 py-3 space-y-1">
+  
+  <div class="flex items-center gap-x-3">
+    <div class="block space-y-1 md:space-y-0 md:flex md:items-center md:gap-x-3">
+      <div class="font-semibold text-gray-900 w-56 md:w-auto truncate">9410808205498064799311</div>
+
+        <div class="w-fit rounded-full px-2 text-sm font-medium bg-lime-100 text-lime-600">
+  
+          2.1 кг
+
+</div>
+
+      <div class="flex items-center gap-x-1">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-500 fill-current" viewBox="0 0 512 512"><path d="M272 464a16 16 0 01-16-16.42V264.13a8 8 0 00-8-8H64.41a16.31 16.31 0 01-15.49-10.65 16 16 0 018.41-19.87l384-176.15a16 16 0 0121.22 21.19l-176 384A16 16 0 01272 464z"></path></svg>
+        <span class="text-gray-600">Прибыла</span>
+      </div>
+    </div>    
+  </div>
+
+  <div class="text-sm text-gray-700">
+  Air M1 16/512 Gray ⨯
+  799.0 ⨯
+  1
+</div>
+
+
+  <div class="text-xs text-gray-500">
+    Добавлена 2023-08-20, обновлена 2023-08-31
+  </div>
+
+  <div class="absolute top-0 pt-2.5 right-5">
+  
+    <a class="text-gray-400 hover:text-red-500" rel="nofollow" data-method="delete" href="/packages/48094">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 fill-current" viewBox="0 0 512 512"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M368 368L144 144M368 144L144 368"></path></svg>
+</a>
+</div>
+
+</div>
+<div class="relative px-5 py-3 space-y-1">
+  
+  <div class="flex items-center gap-x-3">
+    <div class="block space-y-1 md:space-y-0 md:flex md:items-center md:gap-x-3">
+      <div class="font-semibold text-gray-900 w-56 md:w-auto truncate">9410808205499164207621</div>
+
+        <div class="w-fit rounded-full px-2 text-sm font-medium bg-lime-100 text-lime-600">
+  
+          5.0 кг
+
+</div>
+
+      <div class="flex items-center gap-x-1">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-500 fill-current" viewBox="0 0 512 512"><path d="M272 464a16 16 0 01-16-16.42V264.13a8 8 0 00-8-8H64.41a16.31 16.31 0 01-15.49-10.65 16 16 0 018.41-19.87l384-176.15a16 16 0 0121.22 21.19l-176 384A16 16 0 01272 464z"></path></svg>
+        <span class="text-gray-600">Прибыла</span>
+      </div>
+    </div>    
+  </div>
+
+  <div class="text-sm text-gray-700">
+  Mac Mini M1 8/256 ⨯
+  350.0 ⨯
+  1
+</div>
+
+
+  <div class="text-xs text-gray-500">
+    Добавлена 2023-08-02, обновлена 2023-08-21
+  </div>
+
+  <div class="absolute top-0 pt-2.5 right-5">
+  
+    <a class="text-gray-400 hover:text-red-500" rel="nofollow" data-method="delete" href="/packages/46658">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 fill-current" viewBox="0 0 512 512"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M368 368L144 144M368 144L144 368"></path></svg>
+</a>
+</div>
+
+</div>
+<div class="relative px-5 py-3 space-y-1">
+  
+  <div class="flex items-center gap-x-3">
+    <div class="block space-y-1 md:space-y-0 md:flex md:items-center md:gap-x-3">
+      <div class="font-semibold text-gray-900 w-56 md:w-auto truncate">1Z14V5344217372372</div>
+
+        <div class="w-fit rounded-full px-2 text-sm font-medium bg-lime-100 text-lime-600">
+  
+          11.1 кг
+
+</div>
+
+      <div class="flex items-center gap-x-1">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-500 fill-current" viewBox="0 0 512 512"><path d="M272 464a16 16 0 01-16-16.42V264.13a8 8 0 00-8-8H64.41a16.31 16.31 0 01-15.49-10.65 16 16 0 018.41-19.87l384-176.15a16 16 0 0121.22 21.19l-176 384A16 16 0 01272 464z"></path></svg>
+        <span class="text-gray-600">Прибыла</span>
+      </div>
+    </div>    
+  </div>
+
+  <div class="text-sm text-gray-700">
+  imak 24 M1 8/256 Blue ⨯
+  934.95 ⨯
+  1
+</div>
+
+
+  <div class="text-xs text-gray-500">
+    Добавлена 2023-07-19, обновлена 2023-08-03
+  </div>
+
+  <div class="absolute top-0 pt-2.5 right-5">
+  
+    <a class="text-gray-400 hover:text-red-500" rel="nofollow" data-method="delete" href="/packages/45187">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 fill-current" viewBox="0 0 512 512"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M368 368L144 144M368 144L144 368"></path></svg>
+</a>
+</div>
+
+</div>
+<div class="relative px-5 py-3 space-y-1">
+  
+  <div class="flex items-center gap-x-3">
+    <div class="block space-y-1 md:space-y-0 md:flex md:items-center md:gap-x-3">
+      <div class="font-semibold text-gray-900 w-56 md:w-auto truncate">781149585628</div>
+
+        <div class="w-fit rounded-full px-2 text-sm font-medium bg-lime-100 text-lime-600">
+  
+          12.3 кг
+
+</div>
+
+      <div class="flex items-center gap-x-1">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-500 fill-current" viewBox="0 0 512 512"><path d="M272 464a16 16 0 01-16-16.42V264.13a8 8 0 00-8-8H64.41a16.31 16.31 0 01-15.49-10.65 16 16 0 018.41-19.87l384-176.15a16 16 0 0121.22 21.19l-176 384A16 16 0 01272 464z"></path></svg>
+        <span class="text-gray-600">Прибыла</span>
+      </div>
+    </div>    
+  </div>
+
+  <div class="text-sm text-gray-700">
+  iMak 24 M1 8/256 Silver ⨯
+  1050.0 ⨯
+  1
+</div>
+
+
+  <div class="text-xs text-gray-500">
+    Добавлена 2023-07-15, обновлена 2023-07-28
+  </div>
+
+  <div class="absolute top-0 pt-2.5 right-5">
+  
+    <a class="text-gray-400 hover:text-red-500" rel="nofollow" data-method="delete" href="/packages/44744">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 fill-current" viewBox="0 0 512 512"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M368 368L144 144M368 144L144 368"></path></svg>
+</a>
+</div>
+
+</div>
+<div class="relative px-5 py-3 space-y-1">
+  
+  <div class="flex items-center gap-x-3">
+    <div class="block space-y-1 md:space-y-0 md:flex md:items-center md:gap-x-3">
+      <div class="font-semibold text-gray-900 w-56 md:w-auto truncate">1Z3F84A44291059134</div>
+
+        <div class="w-fit rounded-full px-2 text-sm font-medium bg-lime-100 text-lime-600">
+  
+          11.0 кг
+
+</div>
+
+      <div class="flex items-center gap-x-1">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-500 fill-current" viewBox="0 0 512 512"><path d="M272 464a16 16 0 01-16-16.42V264.13a8 8 0 00-8-8H64.41a16.31 16.31 0 01-15.49-10.65 16 16 0 018.41-19.87l384-176.15a16 16 0 0121.22 21.19l-176 384A16 16 0 01272 464z"></path></svg>
+        <span class="text-gray-600">Прибыла</span>
+      </div>
+    </div>    
+  </div>
+
+  <div class="text-sm text-gray-700">
+  imak 24 M1 8/256 Silver – New  ⨯
+  779.0 ⨯
+  1
+</div>
+
+
+  <div class="text-xs text-gray-500">
+    Добавлена 2023-07-04, обновлена 2023-07-21
+  </div>
+
+  <div class="absolute top-0 pt-2.5 right-5">
+  
+    <a class="text-gray-400 hover:text-red-500" rel="nofollow" data-method="delete" href="/packages/43563">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 fill-current" viewBox="0 0 512 512"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M368 368L144 144M368 144L144 368"></path></svg>
+</a>
+</div>
+
+</div>
+
+
+</div>
+
+  <div class="mt-4 text-center">
+    <nav class="pagy-nav pagination" aria-label="pager"><span class="page prev disabled">‹&nbsp;Назад</span> <span class="page active">1</span> <span class="page next disabled">Вперёд&nbsp;›</span></nav>
+  </div>
+
+        </main>
+      </div>
+    </div>
+  
+
+</body></html>
