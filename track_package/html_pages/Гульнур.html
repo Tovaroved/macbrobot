@@ -1,73 +1,6 @@
-<html lang="ru"><head><style type="text/css" data-tag-name="trix-editor">trix-editor {
-  display: block;
-}
-
-trix-editor:empty:not(:focus)::before {
-  content: attr(placeholder);
-  color: graytext;
-  cursor: text;
-  pointer-events: none;
-}
-
-trix-editor a[contenteditable=false] {
-  cursor: text;
-}
-
-trix-editor img {
-  max-width: 100%;
-  height: auto;
-}
-
-trix-editor [data-trix-attachment] figcaption textarea {
-  resize: none;
-}
-
-trix-editor [data-trix-attachment] figcaption textarea.trix-autoresize-clone {
-  position: absolute;
-  left: -9999px;
-  max-height: 0px;
-}
-
-trix-editor [data-trix-attachment] figcaption[data-trix-placeholder]:empty::before {
-  content: attr(data-trix-placeholder);
-  color: graytext;
-}
-
-trix-editor [data-trix-cursor-target] {
-  display: inline-block !important;
-  width: 1px !important;
-  padding: 0 !important;
-  margin: 0 !important;
-  border: none !important;
-}
-
-trix-editor [data-trix-cursor-target=left] {
-  vertical-align: top !important;
-  margin-left: -1px !important;
-}
-
-trix-editor [data-trix-cursor-target=right] {
-  vertical-align: bottom !important;
-  margin-right: -1px !important;
-}</style><style type="text/css" data-tag-name="trix-toolbar">trix-toolbar {
-  display: block;
-}
-
-trix-toolbar {
-  white-space: nowrap;
-}
-
-trix-toolbar [data-trix-dialog] {
-  display: none;
-}
-
-trix-toolbar [data-trix-dialog][data-trix-active] {
-  display: block;
-}
-
-trix-toolbar [data-trix-dialog] [data-trix-validate]:invalid {
-  background-color: #ffdddd;
-}</style>
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
 
@@ -78,18 +11,18 @@ trix-toolbar [data-trix-dialog] [data-trix-validate]:invalid {
       Lifeshop
     </title>
 
-    <meta name="csrf-param" content="authenticity_token">
-<meta name="csrf-token" content="SVGnhU9piGYT2QZlXwNxkPIwloCrLEhgOEND7mGtkbMa3NefmvJcgOKnTPmfcX8fFtDp0gaZSgpgOb0bxu6pcQ">
+    <meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token" content="UHVtL-22NFqnFWvVeeGpwa0JIXQn7ETx-tbUCYqPGpUQcnFPqBH2UJYBlMB-39mbQfUr7Lm0VH36tJ5TVszh6w" />
     
 
-    <link rel="stylesheet" href="/assets/application-4bd5139e8e155afb43a9ee736cfa0c82b17c68e0491536ac56aab470c28443b6.css">
+    <link rel="stylesheet" href="/assets/application-4bd5139e8e155afb43a9ee736cfa0c82b17c68e0491536ac56aab470c28443b6.css" />
     <script src="/assets/application-0350c42a83c65facc8c3e4983c9d6b311121490b7bee30b08317425248d0f846.js" defer="defer"></script>
   </head>
 
   <body>
     <div class="antialiased text-gray-900">
       <div class="px-6 md:px-0">
-        <div class="relative py-6 md:hidden" data-controller="mobile-menu-toggle" data-mobile-menu-toggle-open-value="false">
+        <div class="relative py-6 md:hidden" data-controller="mobile-menu-toggle">
   <div class="flex items-center">
     <a class="text-2xl font-bold text-gray-900 hover:text-gray-900" href="/">Lifeshop</a>
 
@@ -97,13 +30,13 @@ trix-toolbar [data-trix-dialog] [data-trix-validate]:invalid {
     <div class="ml-auto">
       <button data-action="click->mobile-menu-toggle#open" data-mobile-menu-toggle-target="button-open" type="button" class="p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 bg-white hover:bg-gray-100 rounded-md">
         <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
         </svg>
       </button>
     </div>
   </div>
 
-  <div data-mobile-menu-toggle-target="menu" class="absolute z-10 top-6 inset-x-0 p-2" hidden="">
+  <div data-mobile-menu-toggle-target="menu" hidden class="absolute z-10 top-6 inset-x-0 p-2">
     <div class="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 bg-white divide-y-2 divide-gray-50">
       <div class="px-5 pt-5 pb-6">
         <div class="flex items-center justify-between">
@@ -113,7 +46,7 @@ trix-toolbar [data-trix-dialog] [data-trix-validate]:invalid {
           <div class="-mr-2">
             <button data-action="click->mobile-menu-toggle#close" data-mobile-menu-toggle-target="button-close" type="button" class="p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 bg-white hover:bg-gray-100 rounded-md">
               <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
           </div>
@@ -170,9 +103,9 @@ trix-toolbar [data-trix-dialog] [data-trix-validate]:invalid {
     <div data-action="click->collapse#toggle" class="cursor-pointer select-none flex items-center justify-between">
                   Olga Kapranova
 
-      <svg xmlns="http://www.w3.org/2000/svg" data-collapse-target="icon" class="h-4 w-4 fill-current" viewBox="0 0 512 512"><path d="M414 321.94L274.22 158.82a24 24 0 00-36.44 0L98 321.94c-13.34 15.57-2.28 39.62 18.22 39.62h279.6c20.5 0 31.56-24.05 18.18-39.62z"></path></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" data-collapse-target="icon" class="h-4 w-4 fill-current" viewBox="0 0 512 512"><path d="M414 321.94L274.22 158.82a24 24 0 00-36.44 0L98 321.94c-13.34 15.57-2.28 39.62 18.22 39.62h279.6c20.5 0 31.56-24.05 18.18-39.62z"/></svg>
     </div>
-    <div data-collapse-target="content" hidden="">
+    <div data-collapse-target="content" hidden>
                   <div class="mt-4 grid grid-cols-1 gap-y-2 font-medium">
               <a class="text-gray-900" href="/auth/edit.2810">Аккаунт</a>
               <a class="text-gray-900" href="/recipient/edit.2810">Получатель</a>
@@ -185,8 +118,8 @@ trix-toolbar [data-trix-dialog] [data-trix-validate]:invalid {
 
         <main class="md:ml-80 my-8 md:my-32 max-w-4xl">
             <div class="mb-8">
-              <div class="max-w-2xl px-4 py-3 font-medium rounded-md bg-sky-100 text-sky-800">
-  Вход в систему выполнен.
+              <div class="max-w-2xl px-4 py-3 font-medium rounded-md bg-red-100 text-red-800">
+  Вы уже вошли в систему.
 </div>
 
             </div>
@@ -217,8 +150,8 @@ trix-toolbar [data-trix-dialog] [data-trix-validate]:invalid {
 </div>
 
       <div class="flex items-center gap-x-1">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-500 fill-current" viewBox="0 0 512 512"><path d="M272 464a16 16 0 01-16-16.42V264.13a8 8 0 00-8-8H64.41a16.31 16.31 0 01-15.49-10.65 16 16 0 018.41-19.87l384-176.15a16 16 0 0121.22 21.19l-176 384A16 16 0 01272 464z"></path></svg>
-        <span class="text-gray-600">Отправлена</span>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-500 fill-current" viewBox="0 0 512 512"><path d="M272 464a16 16 0 01-16-16.42V264.13a8 8 0 00-8-8H64.41a16.31 16.31 0 01-15.49-10.65 16 16 0 018.41-19.87l384-176.15a16 16 0 0121.22 21.19l-176 384A16 16 0 01272 464z"/></svg>
+        <span class="text-gray-600">Прибыла</span>
       </div>
     </div>    
   </div>
@@ -231,13 +164,13 @@ trix-toolbar [data-trix-dialog] [data-trix-validate]:invalid {
 
 
   <div class="text-xs text-gray-500">
-    Добавлена 2023-10-13, обновлена 2023-10-18
+    Добавлена 2023-10-13, обновлена 2023-10-25
   </div>
 
   <div class="absolute top-0 pt-2.5 right-5">
   
     <a class="text-gray-400 hover:text-red-500" rel="nofollow" data-method="delete" href="/packages/54233">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 fill-current" viewBox="0 0 512 512"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M368 368L144 144M368 144L144 368"></path></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 fill-current" viewBox="0 0 512 512"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M368 368L144 144M368 144L144 368"/></svg>
 </a>
 </div>
 
@@ -255,8 +188,8 @@ trix-toolbar [data-trix-dialog] [data-trix-validate]:invalid {
 </div>
 
       <div class="flex items-center gap-x-1">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-500 fill-current" viewBox="0 0 512 512"><path d="M272 464a16 16 0 01-16-16.42V264.13a8 8 0 00-8-8H64.41a16.31 16.31 0 01-15.49-10.65 16 16 0 018.41-19.87l384-176.15a16 16 0 0121.22 21.19l-176 384A16 16 0 01272 464z"></path></svg>
-        <span class="text-gray-600">В пути</span>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-500 fill-current" viewBox="0 0 512 512"><path d="M272 464a16 16 0 01-16-16.42V264.13a8 8 0 00-8-8H64.41a16.31 16.31 0 01-15.49-10.65 16 16 0 018.41-19.87l384-176.15a16 16 0 0121.22 21.19l-176 384A16 16 0 01272 464z"/></svg>
+        <span class="text-gray-600">Прибыла</span>
       </div>
     </div>    
   </div>
@@ -269,13 +202,13 @@ trix-toolbar [data-trix-dialog] [data-trix-validate]:invalid {
 
 
   <div class="text-xs text-gray-500">
-    Добавлена 2023-10-09, обновлена 2023-10-13
+    Добавлена 2023-10-09, обновлена 2023-10-20
   </div>
 
   <div class="absolute top-0 pt-2.5 right-5">
   
     <a class="text-gray-400 hover:text-red-500" rel="nofollow" data-method="delete" href="/packages/53610">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 fill-current" viewBox="0 0 512 512"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M368 368L144 144M368 144L144 368"></path></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 fill-current" viewBox="0 0 512 512"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M368 368L144 144M368 144L144 368"/></svg>
 </a>
 </div>
 
@@ -285,12 +218,11 @@ trix-toolbar [data-trix-dialog] [data-trix-validate]:invalid {
 </div>
 
   <div class="mt-4 text-center">
-    <nav class="pagy-nav pagination" aria-label="pager"><span class="page prev disabled">‹&nbsp;Назад</span> <span class="page active">1</span> <span class="page next disabled">Вперёд&nbsp;›</span></nav>
+    <nav class="pagy-nav pagination" aria-label="pager"><span class="page prev disabled">&lsaquo;&nbsp;Назад</span> <span class="page active">1</span> <span class="page next disabled">Вперёд&nbsp;&rsaquo;</span></nav>
   </div>
 
         </main>
       </div>
     </div>
-  
-
-</body></html>
+  </body>
+</html>

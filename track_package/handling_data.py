@@ -74,7 +74,7 @@ def get_formatted_data(account_html_code, name: str):
 
                 package_desc = package_text[0].strip()
 
-                package_price = package_text[1].strip()
+                # package_price = package_text[1].strip()
 
                 package_amount = package_text[-1].strip()
 

@@ -1,7 +1,7 @@
 import telebot
 from telebot import types
 from sxrt import main
-from track_package.selenium_test import get_thursday_friday_dates, formatted_packages_list
+from archive.selenium_test import get_thursday_friday_dates, formatted_packages_list
 
 macbrobot = telebot.TeleBot('6670439167:AAECvyhfuw2g6hoLpYp05lMtOmwgDY6kC84')
 

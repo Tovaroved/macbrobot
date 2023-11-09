@@ -1,7 +1,7 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 import time
-from .handling_data import get_formatted_data
+from ..track_package.handling_data import get_formatted_data
 import gspread
 from datetime import datetime, timedelta
 
@@ -26,7 +26,8 @@ logins1,passwords1,names1 = [
     'johnycash52@yandex.ru',
     'bossniger.nn@yandex.ru',
     'gruzinka41@yandex.ru'
-],[
+],
+[
     'murakami670',
     'macbro1v',
     'murakami670',
