@@ -1,12 +1,10 @@
 import telebot
 from telebot import types
-from sxrt import main
+from update_currency.sxrt import main
 from track_package.formatting import formatted_packages_list
 
 
 macbrobot = telebot.TeleBot('6670439167:AAECvyhfuw2g6hoLpYp05lMtOmwgDY6kC84')
-print('hello')
-
 info = formatted_packages_list()
 
 @macbrobot.message_handler(commands=['start'])
@@ -78,4 +76,4 @@ def currentTwo2Bot(message):
   macbrobot.send_message(message.chat.id, first_mess, parse_mode='html')
 
 if __name__ == '__main__':
-  macbrobot.infinity_polling()
+  macbrobot.infinity_polling(True)

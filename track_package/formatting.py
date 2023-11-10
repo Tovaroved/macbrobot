@@ -1,5 +1,5 @@
 from .requests_test import get_data_from_accounts
-
+import gspread
 
 def formatted_packages_list():
     packages = get_data_from_accounts()
@@ -56,3 +56,53 @@ def formatted_packages_list():
     one_part_current = f"""<b>Товары на этой неделе:</b>\n{current_p1+current_p2}\n\n<b>Итого на этой неделе: {round(current_total_p1 + current_total_p2, 2)}</b>"""
     one_part_next = f"""<b>Товары на следующей неделе:</b>\n{next_p1+next_p2}\n\n<b>Итого на следующей неделе: {round(next_total_p1 + next_total_p2, 2)}</b>"""
     return (two_parts_current, two_parts_next, one_part_current, one_part_next)
+
+
+
+# Запись данных в Google Sheets
+
+def gsheet_package(parts=None, week=None):
+    packages = get_data_from_accounts()
+
+    current_p1 = []
+    current_p2 = []
+
+    next_p1 = []
+    next_p2 = []
+
+    """Разделение по неделям и партиям"""
+    for package in packages:
+        if package[-2] == 'Current: part #1':
+            if int(package[-1]) > 1:
+                current_p1.append([f'{package[-1]}шт {package[0]}',package[1],package[2],package[3],package[4]])
+            else:
+                current_p1.append([package[0],package[1],package[2],package[3],package[4]])
+        elif package[-2] == 'Current: part #2':
+            if int(package[-1]) > 1:
+                current_p2.append([f'{package[-1]}шт {package[0]}',package[1],package[2],package[3],package[4]])
+            else:
+                current_p2.append([package[0],package[1],package[2],package[3],package[4]])
+
+        elif package[-2] == 'Next: part #1':
+            if int(package[-1]) > 1:
+                next_p1.append([f'{package[-1]}шт {package[0]}',package[1],package[2],package[3],package[4]])
+            else:
+                next_p1.append([package[0],package[1],package[2],package[3],package[4]])
+
+        elif package[-2] == 'Next: part #2':
+            if int(package[-1]) > 1:
+                next_p2.append([f'{package[-1]}шт {package[0]}',package[1],package[2],package[3],package[4]])
+            else:
+                next_p2.append([package[0],package[1],package[2],package[3],package[4]])
+
+
+    """Авторизация"""
+    sa = gspread.service_account()
+    sh = sa.open("MacPython")
+    wks = sh.worksheet('Список посылок')
+
+    wks.batch_clear(['A1:G50'])
+
+    wks.update('A1:G20', )
+    
+    print("Записано")

@@ -2,7 +2,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 import time
 from ..track_package.handling_data import get_formatted_data
-import gspread
+
 from datetime import datetime, timedelta
 
 

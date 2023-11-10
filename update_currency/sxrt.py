@@ -1,5 +1,5 @@
 import gspread
-from sxrap import get_rates
+from .sxrap import get_rates
 
 
 
