@@ -2,50 +2,49 @@ from bs4 import BeautifulSoup
 from datetime import datetime
 import re
 from datetime import datetime, timedelta
+from utils import get_package_interval, is_date_in_current_week
 
-
-def get_previous_weekday(d, weekday):
-    days_until_previous_weekday = (d.weekday() - weekday + 7) % 7
-    return d - timedelta(days=days_until_previous_weekday)
-
-def get_next_weekday(d, weekday):
-    days_until_next_weekday = (weekday - d.weekday() + 7) % 7
-    return d + timedelta(days=days_until_next_weekday)
-
-def is_date_this_week(date_str):
-    date_to_check = datetime.strptime(date_str, "%Y-%m-%d")
-
-    today = datetime.now()
-
-    start_of_week = today - timedelta(days=today.weekday())
-    end_of_week = start_of_week + timedelta(days=6)
-
-    if start_of_week <= date_to_check <= end_of_week:
-        return True
-    else:
-        return False
 
 
 def get_package_week(date, status):
-    today = datetime.today()
-    input_date = datetime.strptime(date, "%Y-%m-%d").strftime("%Y-%m-%d")
-    current_week_wednesday = get_previous_weekday(today, 2).strftime("%Y-%m-%d")
-    previous_week_wednesday = get_previous_weekday(today - timedelta(weeks=1), 2).strftime("%Y-%m-%d")
-    next_week_wednesday = get_next_weekday(today + timedelta(weeks=1), 2).strftime("%Y-%m-%d")
 
-    if 'Готова' in status:
-        if is_date_this_week(date):
-            return 'A week later'
-        
-        elif not is_date_this_week(date):
-            return 'Next week'
-    
-    elif 'В пути' in status:
-        if is_date_this_week(date):
-            return 'Next week'
-        
-        elif not is_date_this_week(date):
-            return 'Current week'
+    part = get_package_interval(date)
+
+    if part:
+
+        if "Готова" in status:
+            if "lw: fri-wed" in part:
+                return "Next: part #1"
+            elif "cw: wed-fri" in part:
+                return "Next: part #2"
+            elif "cw: fri-wed" in part:
+                return "Later: part #1"
+            
+        elif "Отправ" in status or "В пути" in status:
+            if "lw: wed-fri" in part:
+                return "Current: part#1"
+            
+            elif "lw: fri-wed" in part:
+                return "Current: part #2"
+            
+            elif "cw: wed-fri" in part:
+                return "Next: part #1"
+            
+            elif "cw: fri-wed" in part:
+                return "Next: part #2"
+            
+        elif "Таможенное" in status:
+            if is_date_in_current_week(date):
+                return "Current: part #2"
+            
+            ##ToDo
+
+        elif "Прибыла" in status:
+            if "cw: wed-fri" in part:
+                return "Current: part #1"
+            
+            elif "cw: fri-wed" in part:
+                return "Current: part #2"
 
     else:
         return None
@@ -89,6 +88,3 @@ def get_formatted_data(account_html_code, name: str):
     else:
         return None
     return packages
-
-
-
