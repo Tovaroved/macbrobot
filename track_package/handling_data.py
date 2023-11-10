@@ -2,7 +2,7 @@ from bs4 import BeautifulSoup
 from datetime import datetime
 import re
 from datetime import datetime, timedelta
-from utils import get_package_interval, is_date_in_current_week
+from .utils import get_package_interval, is_date_in_current_week
 
 
 
@@ -22,7 +22,7 @@ def get_package_week(date, status):
             
         elif "Отправ" in status or "В пути" in status:
             if "lw: wed-fri" in part:
-                return "Current: part#1"
+                return "Current: part #1"
             
             elif "lw: fri-wed" in part:
                 return "Current: part #2"

@@ -1,5 +1,5 @@
 import requests
-from handling_data import get_formatted_data
+from .handling_data import get_formatted_data
 import os
 import time
 
@@ -146,7 +146,7 @@ headers = {
 }
 
 
-def get_data_from_accounts(logins1, passwords1, names1, tokens, cookies_):
+def get_data_from_accounts():
     expiration_period = 7200
     current_time = time.time()
     for l, p, n, t, c in zip(logins1, passwords1, names1, tokens, cookies_):
@@ -193,4 +193,4 @@ def get_data_from_accounts(logins1, passwords1, names1, tokens, cookies_):
                 continue
     return packages
 
-print(get_data_from_accounts(logins1, passwords1, names1, tokens, cookies_))
+# get_data_from_accounts(logins1, passwords1, names1, tokens, cookies_)
