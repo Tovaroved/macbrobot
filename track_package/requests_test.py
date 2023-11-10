@@ -152,7 +152,7 @@ def get_data_from_accounts(logins1, passwords1, names1, tokens, cookies_):
     for l, p, n, t, c in zip(logins1, passwords1, names1, tokens, cookies_):
 
         # Путь к файлу для сохранения HTML-кода
-        html_file_path = f'{n}.html'
+        html_file_path = f'track_package/html_pages/{n}.html'
 
         # Проверяем, существует ли файл
         if os.path.exists(html_file_path):
@@ -193,3 +193,4 @@ def get_data_from_accounts(logins1, passwords1, names1, tokens, cookies_):
                 continue
     return packages
 
+print(get_data_from_accounts(logins1, passwords1, names1, tokens, cookies_))
