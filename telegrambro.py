@@ -76,4 +76,4 @@ def currentTwo2Bot(message):
   macbrobot.send_message(message.chat.id, first_mess, parse_mode='html')
 
 if __name__ == '__main__':
-  macbrobot.infinity_polling(True)
+  macbrobot.infinity_polling()

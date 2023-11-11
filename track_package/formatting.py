@@ -100,9 +100,14 @@ def gsheet_package(parts=None, week=None):
     sa = gspread.service_account()
     sh = sa.open("MacPython")
     wks = sh.worksheet('Список посылок')
-
     wks.batch_clear(['A1:G50'])
+    if week: 
+        if parts:
+            
+            wks.update(f"A2:B{len(current_p1)}")
+            wks.merge_cells(f"A{len(current_p1)+2}:E{len(current_p1)+2}")
+            
 
-    wks.update('A1:G20', )
+    
     
     print("Записано")
