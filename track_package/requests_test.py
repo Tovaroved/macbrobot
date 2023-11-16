@@ -159,6 +159,13 @@ def get_data_from_accounts():
             # Получаем время последней модификации файла
             file_modification_time = os.path.getmtime(html_file_path)
 
+            """
+            Посмотреть время последнего изменения html файлов
+
+            local_time = time.ctime(file_modification_time)
+            print("Last modification time(Local time):", local_time)
+            """
+
             # Проверяем, прошло ли менее expiration_period секунд с момента последней модификации файла
             if current_time - file_modification_time < expiration_period:
                 continue

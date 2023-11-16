@@ -1,11 +1,10 @@
 import telebot
 from telebot import types
 from update_currency.sxrt import main
-from track_package.formatting import formatted_packages_list
+from track_package.formatting import formatted_packages_list, gsheet_package
 
 
 macbrobot = telebot.TeleBot('6670439167:AAECvyhfuw2g6hoLpYp05lMtOmwgDY6kC84')
-info = formatted_packages_list()
 
 @macbrobot.message_handler(commands=['start'])
 def startBot(message):
@@ -30,8 +29,8 @@ def packBot(message):
   rep_markup2 = types.ReplyKeyboardMarkup(resize_keyboard=True)
   rep_markup2.add(types.KeyboardButton('/current'))
   rep_markup2.add(types.KeyboardButton('/next'))
+  rep_markup2.add(types.KeyboardButton('/sheets'))
   rep_markup2.add(types.KeyboardButton('/start'))
-
   macbrobot.send_message(message.chat.id, first_mess, parse_mode='html',reply_markup=rep_markup2)
 
 @macbrobot.message_handler(commands=['current'])
@@ -46,11 +45,13 @@ def currentBot(message):
 
 @macbrobot.message_handler(commands=['onepart'])
 def currentOneBot(message):
+  info = formatted_packages_list()
   first_mess = info[2]
   macbrobot.send_message(message.chat.id, first_mess, parse_mode='html')
 
 @macbrobot.message_handler(commands=['twoparts'])
 def currentTwoBot(message):
+  info = formatted_packages_list()
   first_mess = info[0]
   macbrobot.send_message(message.chat.id, first_mess, parse_mode='html')
 
@@ -67,13 +68,46 @@ def nextBot(message):
 
 @macbrobot.message_handler(commands=['onepart2'])
 def currentOne2Bot(message):
+  info = formatted_packages_list()
   first_mess = info[-1]
   macbrobot.send_message(message.chat.id, first_mess, parse_mode='html')
 
 @macbrobot.message_handler(commands=['twoparts2'])
 def currentTwo2Bot(message):
+  info = formatted_packages_list()
   first_mess = info[1]
   macbrobot.send_message(message.chat.id, first_mess, parse_mode='html')
+
+
+@macbrobot.message_handler(commands=['sheets'])
+def currentBot(message):
+  first_mess = "Разделить по партиям?"
+  rep_markup2 = types.ReplyKeyboardMarkup(resize_keyboard=True)
+  rep_markup2.add(types.KeyboardButton('/yes'))
+  rep_markup2.add(types.KeyboardButton('/no'))
+  rep_markup2.add(types.KeyboardButton('/pack'))
+  rep_markup2.add(types.KeyboardButton('/start'))
+
+  macbrobot.send_message(message.chat.id, first_mess, parse_mode='html',reply_markup=rep_markup2)
+
+@macbrobot.message_handler(commands=['yes'])
+def currentBot(message):
+  first_mess = "Записано"
+  rep_markup2 = types.ReplyKeyboardMarkup(resize_keyboard=True)
+  rep_markup2.add(types.KeyboardButton('/pack'))
+  rep_markup2.add(types.KeyboardButton('/start'))
+  gsheet_package(True)
+  macbrobot.send_message(message.chat.id, first_mess, parse_mode='html',reply_markup=rep_markup2)
+
+
+@macbrobot.message_handler(commands=['no'])
+def currentBot(message):
+  first_mess = "Записано"
+  rep_markup2 = types.ReplyKeyboardMarkup(resize_keyboard=True)
+  rep_markup2.add(types.KeyboardButton('/pack'))
+  rep_markup2.add(types.KeyboardButton('/start'))
+  gsheet_package()
+  macbrobot.send_message(message.chat.id, first_mess, parse_mode='html',reply_markup=rep_markup2)
 
 if __name__ == '__main__':
   macbrobot.infinity_polling()

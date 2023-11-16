@@ -34,5 +34,3 @@ def main():
     wks.update('F5', data[0])
 
     wks.update('F2', data[1])
-    
-    print("Курсы обновлены")

@@ -1,8 +1,8 @@
 from datetime import datetime
 
 # Define the start and end times
-start_time_str = "13:15"
-end_time_str = "23:50"
+start_time_str = "12:35"
+end_time_str = "20:20"
 
 # Convert string times to datetime objects
 start_time = datetime.strptime(start_time_str, "%H:%M")

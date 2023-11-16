@@ -61,14 +61,13 @@ def formatted_packages_list():
 
 # Запись данных в Google Sheets
 
-def gsheet_package(parts=None, week=None):
+def gsheet_package(parts=None):
     packages = get_data_from_accounts()
 
     current_p1 = []
     current_p2 = []
 
-    next_p1 = []
-    next_p2 = []
+    next_ = []
 
     """Разделение по неделям и партиям"""
     for package in packages:
@@ -85,29 +84,46 @@ def gsheet_package(parts=None, week=None):
 
         elif package[-2] == 'Next: part #1':
             if int(package[-1]) > 1:
-                next_p1.append([f'{package[-1]}шт {package[0]}',package[1],package[2],package[3],package[4]])
+                next_.append([f'{package[-1]}шт {package[0]}',package[1],package[2],package[3],package[4]])
             else:
-                next_p1.append([package[0],package[1],package[2],package[3],package[4]])
+                next_.append([package[0],package[1],package[2],package[3],package[4]])
 
         elif package[-2] == 'Next: part #2':
             if int(package[-1]) > 1:
-                next_p2.append([f'{package[-1]}шт {package[0]}',package[1],package[2],package[3],package[4]])
+                next_.append([f'{package[-1]}шт {package[0]}',package[1],package[2],package[3],package[4]])
             else:
-                next_p2.append([package[0],package[1],package[2],package[3],package[4]])
+                next_.append([package[0],package[1],package[2],package[3],package[4]])
 
 
     """Авторизация"""
     sa = gspread.service_account()
     sh = sa.open("MacPython")
     wks = sh.worksheet('Список посылок')
-    wks.batch_clear(['A1:G50'])
-    if week: 
-        if parts:
-            
-            wks.update(f"A2:B{len(current_p1)}")
-            wks.merge_cells(f"A{len(current_p1)+2}:E{len(current_p1)+2}")
-            
+    wks.batch_clear(['A1:G60'])
 
+    current_p1_count = len(current_p1) if len(current_p1) != 0 else 1
+    current_p2_count = len(current_p2) if len(current_p2) != 0 else 1
+
+    if parts:
+        wks.update("A2", "Товары на этой неделе")
+        
+        wks.update(f"A3", "Партия №1")
+        wks.update(f"A4:E{current_p1_count+4}", current_p1)
+        
+        wks.update(f"A{current_p1_count+4}", "Партия №2")
+        wks.update(f"A{current_p1_count+5}:E{current_p2_count+5}", current_p2)
+        
+        pack_count = current_p1_count + current_p2_count
+
+        wks.update(f"A{pack_count + 7}", "Товары на следующей неделе")
+
+        wks.update(f"A{pack_count + 8}:E{pack_count + 8}", next_)
     
-    
-    print("Записано")
+    else:
+        wks.update("A2", "Товары на этой неделе")
+        
+        wks.update(f"A3:E{current_p1_count + current_p2_count+3}", current_p1+current_p2)
+
+        wks.update(f"A{current_p1_count + current_p2_count+4}:E{current_p1_count + current_p2_count+4}","Товары на следующей неделе" )
+
+        wks.update(f"A{current_p1_count + current_p2_count+5}:E{current_p1_count + current_p2_count+5}", next_)
