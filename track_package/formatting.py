@@ -104,7 +104,7 @@ def gsheet_package(parts=None):
     current_p1_count = len(current_p1) if len(current_p1) != 0 else 1
     current_p2_count = len(current_p2) if len(current_p2) != 0 else 1
 
-    if parts:
+    if parts: # Для раздельной (по партиям записи)
         wks.update("A2", "Товары на этой неделе")
         
         wks.update(f"A3", "Партия №1")
@@ -119,7 +119,7 @@ def gsheet_package(parts=None):
 
         wks.update(f"A{pack_count + 8}:E{pack_count + 8}", next_)
     
-    else:
+    else: # Для объедененной записи
         wks.update("A2", "Товары на этой неделе")
         
         wks.update(f"A3:E{current_p1_count + current_p2_count+3}", current_p1+current_p2)
