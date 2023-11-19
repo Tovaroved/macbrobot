@@ -3,6 +3,12 @@ from bs4 import BeautifulSoup
 from selenium import webdriver
 
 
+options = webdriver.ChromeOptions()
+
+options.add_argument('--headless')
+driver = webdriver.Chrome(options=options)
+
+
 all_banks_rate_data = {}
 
 def get_rates():
@@ -25,7 +31,6 @@ def get_rates():
 
     """Bakai"""
 
-    driver = webdriver.Safari()
 
     bakai = 'https://bakai.kg/ru/'
 
@@ -163,6 +168,9 @@ def get_rates():
 
     all_banks_rate_data['kicb'] = [float(usd), float(rub)]
 
+
     return all_banks_rate_data
 
+
+# get_rates()
 #/html/body/div[4]/section[3]/div/div[2]/div[1]/div/div/div/ul/li[2]/a
