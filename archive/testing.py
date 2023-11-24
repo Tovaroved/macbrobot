@@ -2,12 +2,17 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 import time
 
+
+"""Тестрирование возможности повторного открытия вкладки браузера"""
+
 driver = webdriver.Chrome()
 executor_url = driver.command_executor._url
 session_id = driver.session_id
 driver.get("https://signin.ebay.com/signin/")
 
 time.sleep(60)
+
+driver.close()
 
 print (session_id)
 print (executor_url)

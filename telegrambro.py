@@ -2,9 +2,11 @@ import telebot
 from telebot import types
 from update_currency.sxrt import main
 from track_package.formatting import formatted_packages_list, gsheet_package
+from decouple import config
 
+BOT_TOKEN=config('BOT_TOKEN')
 
-macbrobot = telebot.TeleBot('6670439167:AAECvyhfuw2g6hoLpYp05lMtOmwgDY6kC84')
+macbrobot = telebot.TeleBot(BOT_TOKEN)
 
 @macbrobot.message_handler(commands=['start'])
 def startBot(message):

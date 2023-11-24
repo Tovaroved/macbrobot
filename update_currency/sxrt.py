@@ -9,7 +9,7 @@ def find_extreme_rates(currency_rates):
     max_rub_rate = float('-inf')  # Отрицательная бесконечность
 
     # Проходим по элементам словаря
-    for bank, rates in currency_rates.items():
+    for bank, rates in currency_rates.items(): 
         usd_rate, rub_rate = rates
 
         # Проверяем, является ли текущий курс доллара минимальным

@@ -1,8 +1,8 @@
-from .requests_test import get_data_from_accounts
+from .requests_test import data_for_tg
 import gspread
 
 def formatted_packages_list():
-    packages = get_data_from_accounts()
+    packages = data_for_tg()
 
     current_p1 = ''
     current_p2 = ''
@@ -62,7 +62,7 @@ def formatted_packages_list():
 # Запись данных в Google Sheets
 
 def gsheet_package(parts=None):
-    packages = get_data_from_accounts()
+    packages = data_for_tg()
 
     current_p1 = []
     current_p2 = []

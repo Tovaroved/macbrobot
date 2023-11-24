@@ -188,7 +188,8 @@ def get_data_from_accounts():
         logout_url = "https://app.lifeshop.kg/auth/logout"
         response = requests.post(logout_url, headers=headers,data=data)
 
-    
+def data_for_tg():
+    get_data_from_accounts()
     packages=[]
     for name in names1:
         with open(f'track_package/html_pages/{name}.html', 'r+') as f:
