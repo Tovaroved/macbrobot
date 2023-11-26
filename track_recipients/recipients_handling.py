@@ -1,6 +1,7 @@
 from bs4 import BeautifulSoup
-from utils import get_sort_key, is_date_in_current_week
-
+from utils import get_sort_key, is_date_in_current_week, calculate_week_dates
+import gspread
+from datetime import datetime
 
 def get_formatted_recipients_data(account_html_code, name: str):
     soup = BeautifulSoup(account_html_code, 'lxml')
@@ -19,7 +20,7 @@ def get_formatted_recipients_data(account_html_code, name: str):
 
                 package_status = package.find('div', class_='flex items-center gap-x-1').text.strip()
 
-                package_date = package.find('div', class_='text-xs text-gray-500').text.strip().replace('\n', '')[-10:]
+                package_date = package.find('div', class_='text-xs text-gray-500').text.strip().replace('\n', '')[-10:].strip()
 
                 package_amount = package_text[-1].strip()
 
@@ -34,9 +35,6 @@ def get_formatted_recipients_data(account_html_code, name: str):
                         
                     else:
                         package_status = 'Ожидаем+'
-                        package_desc = 'XXX - ' + package_desc
-
-                
                 
                 if "Прибыла" in package_status and not is_date_in_current_week(package_date):
                     continue
@@ -53,14 +51,13 @@ def get_formatted_recipients_data(account_html_code, name: str):
 
     return packages
 
-names = [
-    "Уран",
-    "Влад",
+names = {
+    "Влад": '2',
+    "Уран": '3',
+    "Валентина": '4',
+    "Алиса": '5',
+}
 
-    "Валентина",
-    "Алиса",
-
-]
 
 def data_for_rs():
     packages=[]
@@ -73,8 +70,69 @@ def data_for_rs():
             else:
                 continue
     packages = sorted(packages, key=get_sort_key)
+
+
+
     return packages
 
 
-for i in data_for_rs():
-    print(i)
+def table_architecht():
+    dates = calculate_week_dates()
+
+    """Авторизация"""
+    sa = gspread.service_account()
+
+    """Подключаемся к документу"""
+    sh = sa.open("MacPython")
+
+    """Подключаемся к странице и очищаем её"""
+    wks = sh.worksheet('Лист15')
+
+    for k, v in dates.items():
+        wks.update(f'{k}1', f"{v[0].strftime('%d.%m')}-{v[1].strftime('%d.%m')}")
+
+    for k, v in names.items():
+        wks.update(f"A{v}", k)
+
+
+
+def write_to_table():
+
+    packages = data_for_rs() # Заменить
+    dates = calculate_week_dates()
+    done_packs = {}
+    problem_packs = []
+    remaining_packages = []  # Новый список для хранения оставшихся пакетов
+
+    for package in packages:
+        package_added = False  # Флаг, чтобы удостовериться, что пакет добавлен только один раз
+
+        for coll_word, date_list in dates.items():
+            if '+' in package[-2]:
+                problem_packs.append(package)
+                package_added = True
+                break  # Добавил break, чтобы выйти из внутреннего цикла, если условие выполнилось
+                
+            elif date_list[0].date() <= datetime.strptime(package[-1].strip(), '%Y-%m-%d').date() <= date_list[1].date():
+                row_number = names[package[1]]
+                key = coll_word + row_number
+                done_packs.setdefault(key, []).append(package[0] + '\n')
+                package_added = True
+                break  # Также добавил break здесь
+                
+        if not package_added:
+            remaining_packages.append(package)
+
+    """Авторизация"""
+    sa = gspread.service_account()
+
+    """Подключаемся к документу"""
+    sh = sa.open("MacPython")
+
+    """Подключаемся к странице и очищаем её"""
+    wks = sh.worksheet('Лист15')
+
+    for coord, value in done_packs.items():
+        wks.update(coord, ''.join(value))
+
+    wks.update(f'A21:G{21+len(packages)}', packages, value_input_option='USER_ENTERED')
