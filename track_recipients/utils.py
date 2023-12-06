@@ -15,7 +15,7 @@ def is_date_in_current_week(input_date_str):
 
 
 def get_sort_key(item):
-    custom_order = {"Ожидаем+":0, "Ожидаем": 1, "Готова к отправке": 2, "Отправлена": 3, "В пути": 4, "Таможенное оформление": 5, "Прибыла": 6}
+    custom_order = { "Ожидаем": 1, "Готова к отправке": 2, "Отправлена": 3, "В пути": 4, "Таможенное оформление": 5, "Прибыла": 6, "Ожидаем+":7}
     return custom_order.get(item[-2], float('inf'))
 
 
@@ -76,3 +76,27 @@ def calculate_week_dates():
 
         'L': [in_two_weeks_friday, in_three_weeks_tuesday]
     }
+
+
+
+def find_previous_tuesday_thursday(input_date, flag=None):
+    input_date = input_date.strip()
+    days_behind = {'Tuesday': 5, 'Thursday': 3} # for Monday
+    date_format = "%Y-%m-%d"
+    d = datetime.strptime(input_date, date_format)
+    if d.weekday() == 2: # if Wednesday
+        days_behind = {'Tuesday': 1, 'Thursday': 6}
+    elif d.weekday() < 2: # if Sunday or Monday
+        days_behind = {'Tuesday': 2 + d.weekday(), 'Thursday': 4 + d.weekday()}
+    elif d.weekday() > 2: # if from Thursday to Sunday
+        days_behind = {'Tuesday': d.weekday() - 1, 'Thursday': d.weekday() - 3}
+    previous_tuesday = d - timedelta(days=days_behind['Tuesday'])
+    previous_thursday = d - timedelta(days=days_behind['Thursday'])
+    
+    output_date = max(previous_tuesday, previous_thursday).strftime(date_format)
+    if flag:
+        d = datetime.strptime(output_date, date_format)
+        new_date = d - timedelta(days=7)
+        return new_date.strftime(date_format)
+    else:
+        return output_date

@@ -1,5 +1,5 @@
 from bs4 import BeautifulSoup
-from utils import get_sort_key, is_date_in_current_week, calculate_week_dates
+from utils import get_sort_key, is_date_in_current_week, calculate_week_dates, find_previous_tuesday_thursday
 import gspread
 from datetime import datetime
 
@@ -96,9 +96,80 @@ def table_architecht():
 
 
 
-def write_to_table():
+def filter_get_and_read():
+    """Google Sheets reading"""
+    """Авторизация"""
+    sa = gspread.service_account()
 
-    packages = data_for_rs() # Заменить
+    """Подключаемся к документу"""
+    sh = sa.open("MacPython")
+
+    """Подключаемся к странице и очищаем её"""
+    wks = sh.worksheet('Лист15')
+
+    """Получение и чтение данных из аккаунтов LS и таблицы"""
+    packages_sheets = wks.get("A21:G62")
+    packages_lifeshop = data_for_rs()
+
+    """Словари для обработки и список для хранения данных"""
+    pack_sheets = {}
+    pack_lifes = {}
+    done_packs = []
+
+    """Форматирование данных в словари"""
+    for pack_sh in packages_sheets:
+        pack_sheets[pack_sh.pop(2)] = pack_sh
+
+    for pack_ls in packages_lifeshop:
+        pack_lifes[pack_ls.pop(2)] = pack_ls
+
+    """Сравнение данных"""
+
+    for track, package in pack_lifes.items():
+        try: #Действия если товар уже записан
+            package_s = pack_sheets[track]
+            if package == package_s[:-1]:
+                continue
+
+            elif package_s[-1] == 'TRUE':
+                done_packs.append(package[:-1]+package_s[-2:])
+
+            elif 'Готова к' in package[3]:
+                done_packs.append(package.insert(2, track)+['TRUE'])
+
+            elif '+' in package[3]:
+                done_packs.append(package.insert(2, track)+['FALSE'])
+
+            elif all([package_s[3]=='Ожидаем', 'Готова к' not in package[3], "Прибыла" not in package[3]]):
+                done_packs.append(package[:-1]+[find_previous_tuesday_thursday(package[-1])]+['FALSE'])
+
+            else:
+                continue
+
+        except KeyError:
+            if "Готова к" in package[3]:
+                done_packs.append([package]+['TRUE'])
+
+            elif any(["В пути" in package[3], "Отправл" in package[3]]):
+                done_packs.append(package[:-1]+[find_previous_tuesday_thursday(package[-1])]+['FALSE'])
+
+            elif package[3] == "Ожидаем" or '+' in package[3]:
+                done_packs.append(package.insert(2, track)+['FALSE'])
+    
+    return sorted(done_packs, key=get_sort_key)
+     
+
+
+#     for k,v in pack_sheets.items():
+#         print(k,': ',v) 
+
+# filter_get_and_read()
+
+
+
+
+def write_to_table():
+    packages = filter_get_and_read()
     dates = calculate_week_dates()
     done_packs = {}
     problem_packs = []
@@ -108,12 +179,12 @@ def write_to_table():
         package_added = False  # Флаг, чтобы удостовериться, что пакет добавлен только один раз
 
         for coll_word, date_list in dates.items():
-            if '+' in package[-2]:
+            if '+' in package[-3]:
                 problem_packs.append(package)
                 package_added = True
                 break  # Добавил break, чтобы выйти из внутреннего цикла, если условие выполнилось
                 
-            elif date_list[0].date() <= datetime.strptime(package[-1].strip(), '%Y-%m-%d').date() <= date_list[1].date():
+            elif date_list[0].date() <= datetime.strptime(package[-2].strip(), '%Y-%m-%d').date() <= date_list[1].date():
                 row_number = names[package[1]]
                 key = coll_word + row_number
                 done_packs.setdefault(key, []).append(package[0] + '\n')
@@ -135,4 +206,7 @@ def write_to_table():
     for coord, value in done_packs.items():
         wks.update(coord, ''.join(value))
 
-    wks.update(f'A21:G{21+len(packages)}', packages, value_input_option='USER_ENTERED')
+    wks.update(f'I21:O{21+len(packages)}', packages, value_input_option='USER_ENTERED')
+
+
+write_to_table()
