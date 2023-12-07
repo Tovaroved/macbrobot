@@ -1,5 +1,5 @@
 from bs4 import BeautifulSoup
-from utils import get_sort_key, is_date_in_current_week, calculate_week_dates, find_previous_tuesday_thursday
+from utils import get_sort_key, is_date_in_current_week, calculate_week_dates, find_previous_tuesday_thursday, get_sort_key2
 import gspread
 from datetime import datetime
 
@@ -31,7 +31,7 @@ def get_formatted_recipients_data(account_html_code, name: str):
                 if "Ожид" in package_status:
                     # print(package_desc.split('|')[-1].strip())
                     if len(package_desc.split('|')[-1].strip()) == 10:
-                        package_date = package_desc.split('|')[-1]
+                        package_date = package_desc.split('|')[-1].strip()
                         
                     else:
                         package_status = 'Ожидаем+'
@@ -120,31 +120,36 @@ def filter_get_and_read():
     for pack_sh in packages_sheets:
         pack_sheets[pack_sh.pop(2)] = pack_sh
 
+
     for pack_ls in packages_lifeshop:
         pack_lifes[pack_ls.pop(2)] = pack_ls
-
     """Сравнение данных"""
 
     for track, package in pack_lifes.items():
         try: #Действия если товар уже записан
             package_s = pack_sheets[track]
-            if package == package_s[:-1]:
-                continue
+            package_l = package_s[:-1]
+            if package == package_l:
+                package_s.insert(2, track)
+                done_packs.append(package_s)
 
             elif package_s[-1] == 'TRUE':
                 done_packs.append(package[:-1]+package_s[-2:])
 
             elif 'Готова к' in package[3]:
-                done_packs.append(package.insert(2, track)+['TRUE'])
+                package.insert(2, track)+['TRUE']
+                done_packs.append(package)
 
             elif '+' in package[3]:
-                done_packs.append(package.insert(2, track)+['FALSE'])
+                package.insert(2, track)+['FALSE']
+                done_packs.append(package)
 
             elif all([package_s[3]=='Ожидаем', 'Готова к' not in package[3], "Прибыла" not in package[3]]):
-                done_packs.append(package[:-1]+[find_previous_tuesday_thursday(package[-1])]+['FALSE'])
+                package.insert(2,track)+find_previous_tuesday_thursday(package[-1])+['FALSE']
+                done_packs.append(package)
 
             else:
-                continue
+                raise
 
         except KeyError:
             if "Готова к" in package[3]:
@@ -155,8 +160,9 @@ def filter_get_and_read():
 
             elif package[3] == "Ожидаем" or '+' in package[3]:
                 done_packs.append(package.insert(2, track)+['FALSE'])
-    
-    return sorted(done_packs, key=get_sort_key)
+
+    done_packs = sorted(done_packs, key=get_sort_key2)
+    return done_packs
      
 
 

@@ -19,6 +19,10 @@ def get_sort_key(item):
     return custom_order.get(item[-2], float('inf'))
 
 
+def get_sort_key2(item):
+    custom_order = { "Ожидаем": 1, "Готова к отправке": 2, "Отправлена": 3, "В пути": 4, "Таможенное оформление": 5, "Прибыла": 6, "Ожидаем+":7}
+    return custom_order.get(item[-3], float('inf'))
+
 def calculate_week_dates():
     current_date = datetime.now()
 
