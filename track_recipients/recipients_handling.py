@@ -108,7 +108,7 @@ def filter_get_and_read():
     wks = sh.worksheet('Лист15')
 
     """Получение и чтение данных из аккаунтов LS и таблицы"""
-    packages_sheets = wks.get("A21:G62")
+    packages_sheets = wks.get("I21:O35")
     packages_lifeshop = data_for_rs()
 
     """Словари для обработки и список для хранения данных"""
@@ -133,35 +133,27 @@ def filter_get_and_read():
                 package_s.insert(2, track)
                 done_packs.append(package_s)
 
-            elif package_s[-1] == 'TRUE':
-                done_packs.append(package[:-1]+package_s[-2:])
+            elif package_s[-1] == 'TRUE' or package_s[-1] == 'ИСТИНА':
+                package_s[-3] = package[-2]
+                done_packs.append(package_s)
+            
+            elif package_s[-3] == "Ожидаем":
+                if "Готова к отправке" == package[-2]:
+                    package_s[-3:] = package[-2:] + ["ИСТИНА"]
+                
+                elif "В пути" in package[-2] or "Отправл" in package[-2]:
+                    package_s[-3:] = package[-2] + [find_previous_tuesday_thursday(package[-1])] + ["ЛОЖЬ"]
+                
+                elif "Прибыл" in package[-2] or "Таможенн" in package[-2]:
+                    package_s[-3:] = package[-2] + [find_previous_tuesday_thursday(package[-1], 1)] + ["ЛОЖЬ"]
 
-            elif 'Готова к' in package[3]:
-                package.insert(2, track)+['TRUE']
-                done_packs.append(package)
+                done_packs.append(package_s)
 
-            elif '+' in package[3]:
-                package.insert(2, track)+['FALSE']
-                done_packs.append(package)
-
-            elif all([package_s[3]=='Ожидаем', 'Готова к' not in package[3], "Прибыла" not in package[3]]):
-                package.insert(2,track)+find_previous_tuesday_thursday(package[-1])+['FALSE']
-                done_packs.append(package)
-
-            else:
-                raise
+            elif ...:
+                ...
 
         except KeyError:
-            if "Готова к" in package[3]:
-                done_packs.append([package]+['TRUE'])
-
-            elif any(["В пути" in package[3], "Отправл" in package[3]]):
-                done_packs.append(package[:-1]+[find_previous_tuesday_thursday(package[-1])]+['FALSE'])
-
-            elif package[3] == "Ожидаем" or '+' in package[3]:
-                done_packs.append(package.insert(2, track)+['FALSE'])
-
-    done_packs = sorted(done_packs, key=get_sort_key2)
+            ...
     return done_packs
      
 
@@ -212,7 +204,40 @@ def write_to_table():
     for coord, value in done_packs.items():
         wks.update(coord, ''.join(value))
 
-    wks.update(f'I21:O{21+len(packages)}', packages, value_input_option='USER_ENTERED')
+    wks.update(f'I21:P{21+len(packages)}', packages, value_input_option='USER_ENTERED')
 
 
 write_to_table()
+
+
+
+'''
+elif 'Готова к' in package[3]:
+                package.insert(2, track)
+                done_packs.append(package+['TRUE'])
+
+            elif '+' in package[3]:
+                package.insert(2, track)
+                done_packs.append(package+['FALSE'])
+
+            elif all([package_s[3]=='Ожидаем', 'Готова к' not in package[3], "Прибыла" not in package[3]]):
+                package.insert(2,track)
+                print(package[-1]+[find_previous_tuesday_thursday(package[-1])]+['FALSE'], 'hello')
+                done_packs.append(package[-1]+[find_previous_tuesday_thursday(package[-1])]+['FALSE'])
+
+            else:
+                raise
+
+        except KeyError:
+            if "Готова к" in package[3]:
+                package.insert(2, track)
+                done_packs.append(package+['TRUE'])
+
+            elif any(["В пути" in package[3], "Отправл" in package[3]]):
+                package[:-1]+[find_previous_tuesday_thursday(package[-1])]+['FALSE']
+                done_packs.append(package)
+
+            elif package[3] == "Ожидаем" or '+' in package[3]:
+                done_packs.append(package.insert(2, track)+['FALSE'])
+    print(done_packs)
+    done_packs = sorted(done_packs, key=get_sort_key2)'''

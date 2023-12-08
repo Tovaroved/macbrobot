@@ -104,3 +104,5 @@ def find_previous_tuesday_thursday(input_date, flag=None):
         return new_date.strftime(date_format)
     else:
         return output_date
+    
+# print(find_previous_tuesday_thursday("2023-12-09", 1))
