@@ -123,37 +123,63 @@ def filter_get_and_read():
 
     for pack_ls in packages_lifeshop:
         pack_lifes[pack_ls.pop(2)] = pack_ls
+
     """Сравнение данных"""
 
     for track, package in pack_lifes.items():
+
+
         try: #Действия если товар уже записан
             package_s = pack_sheets[track]
             package_l = package_s[:-1]
+
             if package == package_l:
                 package_s.insert(2, track)
-                done_packs.append(package_s)
 
-            elif package_s[-1] == 'TRUE' or package_s[-1] == 'ИСТИНА':
+            elif package_s[-1] == "TRUE" or package_s[-1] == "ИСТИНА":
                 package_s[-3] = package[-2]
-                done_packs.append(package_s)
-            
+                package_s.insert(2, track)
+
             elif package_s[-3] == "Ожидаем":
                 if "Готова к отправке" == package[-2]:
-                    package_s[-3:] = package[-2:] + ["ИСТИНА"]
-                
+                    package_s[-3:] = package[-2:] + ["TRUE"]
+                    package_s.insert(2, track)
                 elif "В пути" in package[-2] or "Отправл" in package[-2]:
                     package_s[-3:] = package[-2] + [find_previous_tuesday_thursday(package[-1])] + ["ЛОЖЬ"]
-                
+                    package_s.insert(2, track)
                 elif "Прибыл" in package[-2] or "Таможенн" in package[-2]:
                     package_s[-3:] = package[-2] + [find_previous_tuesday_thursday(package[-1], 1)] + ["ЛОЖЬ"]
+                    package_s.insert(2, track)
 
-                done_packs.append(package_s)
+            elif package_s[-3] == "Готова к отправке":
+                package_s[-3] = package[-2]
+                package_s.insert(2, track)
 
-            elif ...:
-                ...
+            elif "В пути" in package_s[-3] or "Отправл" in package_s[-3]:
+                if "Прибыл" in package[-2] or "Таможенн" in package[-2]:
+                    package_s[-3] = package[-2]
+                    package_s.insert(2, track)
+            
+            done_packs.append(package_s)
 
         except KeyError:
-            ...
+            if package[-2] == "Ожидаем":
+                package += ["FALSE"]
+
+            elif "Готова к отправ" in package[-2]:
+                package += ["TRUE"]
+            
+            elif "Отправ" in package[-2] or "В пути" in package[-2]:
+                package[-1] = find_previous_tuesday_thursday(package[-1])
+                package += ["FALSE"]
+
+            elif "Таможенное" in package[-2] or "Прибыл" in package[-2]:
+                package[-1] = find_previous_tuesday_thursday(package[-1],1)
+                package += ["FALSE"]
+            
+            package.insert(2,track)
+            done_packs.append(package)
+
     return done_packs
      
 
