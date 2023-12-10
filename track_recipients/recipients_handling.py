@@ -124,10 +124,11 @@ def filter_get_and_read():
     for pack_ls in packages_lifeshop:
         pack_lifes[pack_ls.pop(2)] = pack_ls
 
+
+    # print(pack_sheets)
     """Сравнение данных"""
 
     for track, package in pack_lifes.items():
-
 
         try: #Действия если товар уже записан
             package_s = pack_sheets[track]
@@ -159,6 +160,12 @@ def filter_get_and_read():
                 if "Прибыл" in package[-2] or "Таможенн" in package[-2]:
                     package_s[-3] = package[-2]
                     package_s.insert(2, track)
+            
+            else:
+                package.insert(2, track)
+                package += ["FALSE"]
+                done_packs.append(package)
+                continue
             
             done_packs.append(package_s)
 
@@ -234,7 +241,7 @@ def write_to_table():
 
 
 write_to_table()
-
+# filter_get_and_read()
 
 
 '''
