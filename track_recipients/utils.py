@@ -83,21 +83,18 @@ def calculate_week_dates():
 
 
 
+
 def find_previous_tuesday_thursday(input_date, flag=None):
-    input_date = input_date.strip()
-    days_behind = {'Tuesday': 5, 'Thursday': 3} # for Monday
     date_format = "%Y-%m-%d"
-    d = datetime.strptime(input_date, date_format)
-    if d.weekday() == 2: # if Wednesday
-        days_behind = {'Tuesday': 1, 'Thursday': 6}
-    elif d.weekday() < 2: # if Sunday or Monday
-        days_behind = {'Tuesday': 2 + d.weekday(), 'Thursday': 4 + d.weekday()}
-    elif d.weekday() > 2: # if from Thursday to Sunday
-        days_behind = {'Tuesday': d.weekday() - 1, 'Thursday': d.weekday() - 3}
-    previous_tuesday = d - timedelta(days=days_behind['Tuesday'])
-    previous_thursday = d - timedelta(days=days_behind['Thursday'])
-    
+    input_date = datetime.strptime(input_date, date_format)
+
+    # Найдем предыдущий вторник и четверг
+    previous_tuesday = input_date - timedelta(days=(input_date.weekday() - 1) % 7)
+    previous_thursday = input_date - timedelta(days=(input_date.weekday() - 3) % 7)
+
+    # Выберем тот, который ближе к введенной дате
     output_date = max(previous_tuesday, previous_thursday).strftime(date_format)
+
     if flag:
         d = datetime.strptime(output_date, date_format)
         new_date = d - timedelta(days=7)

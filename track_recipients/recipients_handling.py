@@ -3,6 +3,8 @@ from utils import get_sort_key, is_date_in_current_week, calculate_week_dates, f
 import gspread
 from datetime import datetime
 
+
+
 def get_formatted_recipients_data(account_html_code, name: str):
     soup = BeautifulSoup(account_html_code, 'lxml')
     packages = []
@@ -44,7 +46,7 @@ def get_formatted_recipients_data(account_html_code, name: str):
             except AttributeError:
                 continue
             
-            packages.append([package_desc, name, package_track, package_price, package_status, package_date])
+            packages.append([package_desc, name, package_track, package_status, package_date])
         
     else:
         return None
@@ -52,17 +54,34 @@ def get_formatted_recipients_data(account_html_code, name: str):
     return packages
 
 names = {
-    "Влад": '2',
-    "Уран": '3',
-    "Валентина": '4',
-    "Алиса": '5',
+    "Уран": "2",
+    "Влад": "3",
+    "Леша": "4",
+    "Антон": "5",
+    "Дима": "6",
+    "Руслан": "7",
+    "Ира": "8",
+    "Мекен": "9",
+    "Марина": "10",
+    "Костя": "11",
+    "Сергей": "12",
+    "Ксения": "13",
+    "Александра": "14",
+    "Иван": "15",
+    "Валентина": "16",
+    "Арина": "17",
+    "Ольга": "18",
+    "Гульнур": "19",
+    'Михаил_П': "20",
+    'Михаил_М': "21",
+    'Алиса': "22"
 }
 
 
 def data_for_rs():
     packages=[]
     for name in names:
-        with open(f'track_recipients/test_html_pages/{name}.html', 'r+') as f:
+        with open(f'track_package/html_pages/{name}.html', 'r+') as f:
             html_code = f.read()
             data = get_formatted_recipients_data(html_code, name)
             if data:
@@ -108,7 +127,7 @@ def filter_get_and_read():
     wks = sh.worksheet('Лист15')
 
     """Получение и чтение данных из аккаунтов LS и таблицы"""
-    packages_sheets = wks.get("I21:O35")
+    packages_sheets = wks.get("A26:F55")
     packages_lifeshop = data_for_rs()
 
     """Словари для обработки и список для хранения данных"""
@@ -118,11 +137,17 @@ def filter_get_and_read():
 
     """Форматирование данных в словари"""
     for pack_sh in packages_sheets:
-        pack_sheets[pack_sh.pop(2)] = pack_sh
+        try:
+            pack_sheets[pack_sh.pop(2)] = pack_sh
+        except IndexError:
+            continue
 
 
     for pack_ls in packages_lifeshop:
-        pack_lifes[pack_ls.pop(2)] = pack_ls
+        try:
+            pack_lifes[pack_ls.pop(2)] = pack_ls
+        except IndexError:
+            continue
 
 
     # print(pack_sheets)
@@ -141,7 +166,7 @@ def filter_get_and_read():
                 package_s[-3] = package[-2]
                 package_s.insert(2, track)
 
-            elif package_s[-3] == "Ожидаем":
+            elif package_s[-3] == "Ожидаем" or '+' in package_s[-3]:
                 if "Готова к отправке" == package[-2]:
                     package_s[-3:] = package[-2:] + ["TRUE"]
                     package_s.insert(2, track)
@@ -158,6 +183,10 @@ def filter_get_and_read():
 
             elif "В пути" in package_s[-3] or "Отправл" in package_s[-3]:
                 if "Прибыл" in package[-2] or "Таможенн" in package[-2]:
+                    package_s[-3] = package[-2]
+                    package_s.insert(2, track)
+
+                elif "В пути" in package[-2] or "Отправл" in package[-2]:
                     package_s[-3] = package[-2]
                     package_s.insert(2, track)
             
@@ -182,6 +211,9 @@ def filter_get_and_read():
 
             elif "Таможенное" in package[-2] or "Прибыл" in package[-2]:
                 package[-1] = find_previous_tuesday_thursday(package[-1],1)
+                package += ["FALSE"]
+
+            elif '+' in package[-2]:
                 package += ["FALSE"]
             
             package.insert(2,track)
@@ -233,14 +265,15 @@ def write_to_table():
 
     """Подключаемся к странице и очищаем её"""
     wks = sh.worksheet('Лист15')
+    wks.batch_clear(["B2:L20", "A26:F55"])
 
     for coord, value in done_packs.items():
         wks.update(coord, ''.join(value))
 
-    wks.update(f'I21:P{21+len(packages)}', packages, value_input_option='USER_ENTERED')
+    wks.update(f'A26:F{26+len(packages)}', packages, value_input_option='USER_ENTERED')
 
-
-write_to_table()
+# table_architecht()
+# write_to_table()
 # filter_get_and_read()
 
 
