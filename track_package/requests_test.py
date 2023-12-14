@@ -200,5 +200,3 @@ def data_for_tg():
             else:
                 continue
     return packages
-
-get_data_from_accounts()

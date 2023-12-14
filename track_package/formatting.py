@@ -111,13 +111,13 @@ def gsheet_package(parts=None):
         wks.update(f"A4:E{current_p1_count+4}", current_p1)
         
         wks.update(f"A{current_p1_count+4}", "Партия №2")
-        wks.update(f"A{current_p1_count+5}:E{current_p2_count+5}", current_p2)
+        wks.update(f"A{current_p1_count+5}:E{current_p2_count+5+len(current_p2)}", current_p2)
         
         pack_count = current_p1_count + current_p2_count
 
         wks.update(f"A{pack_count + 7}", "Товары на следующей неделе")
 
-        wks.update(f"A{pack_count + 8}:E{pack_count + 8}", next_)
+        wks.update(f"A{pack_count + 8}:E{pack_count + 8 + len(next_)}", next_)
     
     else: # Для объедененной записи
         wks.update("A2", "Товары на этой неделе")
@@ -126,4 +126,4 @@ def gsheet_package(parts=None):
 
         wks.update(f"A{current_p1_count + current_p2_count+4}:E{current_p1_count + current_p2_count+4}","Товары на следующей неделе" )
 
-        wks.update(f"A{current_p1_count + current_p2_count+5}:E{current_p1_count + current_p2_count+5}", next_)
+        wks.update(f"A{current_p1_count + current_p2_count+5}:E{current_p1_count + current_p2_count+5+len(next_)}", next_)

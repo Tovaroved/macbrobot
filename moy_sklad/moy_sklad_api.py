@@ -7,7 +7,7 @@ client = sklad.get_client()
 methods = sklad.get_methods()
 
 response = client.get(
-    method=methods.get_list_url('counterparty'),
+    method=methods.get_list_url('purchaseorder'),
     # query=Query(
     #     Filter().exists('email').eq('archived', False),
     #     Search('петров'),
@@ -16,4 +16,9 @@ response = client.get(
     #     Select(limit=1),
     # ),
 )
-print(response.data)
+# print(response.data)
+
+import json
+
+with open('moy_sklad/data.json' ,"w",) as f:
+    json.dump(response.data, f, indent=3, ensure_ascii=False)

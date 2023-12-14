@@ -2,6 +2,7 @@ import telebot
 from telebot import types
 from update_currency.sxrt import main
 from track_package.formatting import formatted_packages_list, gsheet_package
+from track_recipients.recipients_handling import table_architecht, write_to_table
 from decouple import config
 
 BOT_TOKEN=config('BOT_TOKEN')
@@ -32,6 +33,7 @@ def packBot(message):
   rep_markup2.add(types.KeyboardButton('/current'))
   rep_markup2.add(types.KeyboardButton('/next'))
   rep_markup2.add(types.KeyboardButton('/sheets'))
+  rep_markup2.add(types.KeyboardButton('/recipients'))
   rep_markup2.add(types.KeyboardButton('/start'))
   macbrobot.send_message(message.chat.id, first_mess, parse_mode='html',reply_markup=rep_markup2)
 
@@ -109,6 +111,21 @@ def currentBot(message):
   rep_markup2.add(types.KeyboardButton('/pack'))
   rep_markup2.add(types.KeyboardButton('/start'))
   gsheet_package()
+  macbrobot.send_message(message.chat.id, first_mess, parse_mode='html',reply_markup=rep_markup2)
+
+@macbrobot.message_handler(commands=['recipients'])
+def recipientsBot(message):
+  try:
+    table_architecht()
+    write_to_table()
+    first_mess = "Обновлено"
+  except Exception as ex:
+    first_mess = ex
+
+  rep_markup2 = types.ReplyKeyboardMarkup(resize_keyboard=True)
+  rep_markup2.add(types.KeyboardButton('/pack'))
+  rep_markup2.add(types.KeyboardButton('/start'))
+
   macbrobot.send_message(message.chat.id, first_mess, parse_mode='html',reply_markup=rep_markup2)
 
 if __name__ == '__main__':

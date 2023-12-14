@@ -1,0 +1,144 @@
+{
+   "context": {
+      "employee": {
+         "meta": {
+            "href": "https://online.moysklad.ru/api/remap/1.2/context/employee",
+            "metadataHref": "https://online.moysklad.ru/api/remap/1.2/entity/employee/metadata",
+            "type": "employee",
+            "mediaType": "application/json"
+         }
+      }
+   },
+   "meta": {
+      "href": "https://online.moysklad.ru/api/remap/1.2/entity/purchaseorder",
+      "type": "purchaseorder",
+      "mediaType": "application/json",
+      "size": 1,
+      "limit": 1000,
+      "offset": 0
+   },
+   "rows": [
+      {
+         "meta": {
+            "href": "https://online.moysklad.ru/api/remap/1.2/entity/purchaseorder/c08514e2-8f67-11ee-0a80-1560000df30a",
+            "metadataHref": "https://online.moysklad.ru/api/remap/1.2/entity/purchaseorder/metadata",
+            "type": "purchaseorder",
+            "mediaType": "application/json",
+            "uuidHref": "https://online.moysklad.ru/app/#purchaseorder/edit?id=c08514e2-8f67-11ee-0a80-1560000df30a"
+         },
+         "id": "c08514e2-8f67-11ee-0a80-1560000df30a",
+         "accountId": "98bfc7c8-8f64-11ee-0a80-068500005136",
+         "owner": {
+            "meta": {
+               "href": "https://online.moysklad.ru/api/remap/1.2/entity/employee/99031ab5-8f64-11ee-0a80-022b000d454a",
+               "metadataHref": "https://online.moysklad.ru/api/remap/1.2/entity/employee/metadata",
+               "type": "employee",
+               "mediaType": "application/json",
+               "uuidHref": "https://online.moysklad.ru/app/#employee/edit?id=99031ab5-8f64-11ee-0a80-022b000d454a"
+            }
+         },
+         "shared": false,
+         "group": {
+            "meta": {
+               "href": "https://online.moysklad.ru/api/remap/1.2/entity/group/98c048e7-8f64-11ee-0a80-068500005137",
+               "metadataHref": "https://online.moysklad.ru/api/remap/1.2/entity/group/metadata",
+               "type": "group",
+               "mediaType": "application/json"
+            }
+         },
+         "updated": "2023-12-14 13:19:30.608",
+         "name": "00001",
+         "description": "Тестовый тест для тестов",
+         "externalCode": "qtaKHJb7grNpdp7Y0J0253",
+         "moment": "2023-11-30 13:03:00.000",
+         "applicable": true,
+         "rate": {
+            "currency": {
+               "meta": {
+                  "href": "https://online.moysklad.ru/api/remap/1.2/entity/currency/99262888-8f64-11ee-0a80-022b000d459f",
+                  "metadataHref": "https://online.moysklad.ru/api/remap/1.2/entity/currency/metadata",
+                  "type": "currency",
+                  "mediaType": "application/json",
+                  "uuidHref": "https://online.moysklad.ru/app/#currency/edit?id=99262888-8f64-11ee-0a80-022b000d459f"
+               }
+            }
+         },
+         "sum": 130000.0,
+         "store": {
+            "meta": {
+               "href": "https://online.moysklad.ru/api/remap/1.2/entity/store/99258be3-8f64-11ee-0a80-022b000d459a",
+               "metadataHref": "https://online.moysklad.ru/api/remap/1.2/entity/store/metadata",
+               "type": "store",
+               "mediaType": "application/json",
+               "uuidHref": "https://online.moysklad.ru/app/#warehouse/edit?id=99258be3-8f64-11ee-0a80-022b000d459a"
+            }
+         },
+         "agent": {
+            "meta": {
+               "href": "https://online.moysklad.ru/api/remap/1.2/entity/counterparty/9925b9ef-8f64-11ee-0a80-022b000d459b",
+               "metadataHref": "https://online.moysklad.ru/api/remap/1.2/entity/counterparty/metadata",
+               "type": "counterparty",
+               "mediaType": "application/json",
+               "uuidHref": "https://online.moysklad.ru/app/#company/edit?id=9925b9ef-8f64-11ee-0a80-022b000d459b"
+            }
+         },
+         "organization": {
+            "meta": {
+               "href": "https://online.moysklad.ru/api/remap/1.2/entity/organization/99242f25-8f64-11ee-0a80-022b000d4598",
+               "metadataHref": "https://online.moysklad.ru/api/remap/1.2/entity/organization/metadata",
+               "type": "organization",
+               "mediaType": "application/json",
+               "uuidHref": "https://online.moysklad.ru/app/#mycompany/edit?id=99242f25-8f64-11ee-0a80-022b000d4598"
+            }
+         },
+         "state": {
+            "meta": {
+               "href": "https://online.moysklad.ru/api/remap/1.2/entity/purchaseorder/metadata/states/430a4997-9a6a-11ee-0a80-0ea8000cd9de",
+               "metadataHref": "https://online.moysklad.ru/api/remap/1.2/entity/purchaseorder/metadata",
+               "type": "state",
+               "mediaType": "application/json"
+            }
+         },
+         "created": "2023-11-30 13:03:46.942",
+         "printed": false,
+         "published": false,
+         "files": {
+            "meta": {
+               "href": "https://online.moysklad.ru/api/remap/1.2/entity/purchaseorder/c08514e2-8f67-11ee-0a80-1560000df30a/files",
+               "type": "files",
+               "mediaType": "application/json",
+               "size": 0,
+               "limit": 1000,
+               "offset": 0
+            }
+         },
+         "positions": {
+            "meta": {
+               "href": "https://online.moysklad.ru/api/remap/1.2/entity/purchaseorder/c08514e2-8f67-11ee-0a80-1560000df30a/positions",
+               "type": "purchaseorderposition",
+               "mediaType": "application/json",
+               "size": 1,
+               "limit": 1000,
+               "offset": 0
+            }
+         },
+         "vatEnabled": false,
+         "payedSum": 130000.0,
+         "shippedSum": 0.0,
+         "invoicedSum": 0.0,
+         "waitSum": 130000.0,
+         "payments": [
+            {
+               "meta": {
+                  "href": "https://online.moysklad.ru/api/remap/1.2/entity/paymentout/c5fc4227-8f67-11ee-0a80-1457000e875e",
+                  "metadataHref": "https://online.moysklad.ru/api/remap/1.2/entity/paymentout/metadata",
+                  "type": "paymentout",
+                  "mediaType": "application/json",
+                  "uuidHref": "https://online.moysklad.ru/app/#paymentout/edit?id=c5fc4227-8f67-11ee-0a80-1457000e875e"
+               },
+               "linkedSum": 130000.0
+            }
+         ]
+      }
+   ]
+}

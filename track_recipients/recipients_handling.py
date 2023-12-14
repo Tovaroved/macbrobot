@@ -1,5 +1,6 @@
 from bs4 import BeautifulSoup
-from utils import get_sort_key, is_date_in_current_week, calculate_week_dates, find_previous_tuesday_thursday, get_sort_key2
+from .utils import get_sort_key, is_date_in_current_week, calculate_week_dates, find_previous_tuesday_thursday, get_sort_key2
+from track_package.requests_test import get_data_from_accounts
 import gspread
 from datetime import datetime
 
@@ -80,6 +81,7 @@ names = {
 
 def data_for_rs():
     packages=[]
+    get_data_from_accounts()
     for name in names:
         with open(f'track_package/html_pages/{name}.html', 'r+') as f:
             html_code = f.read()
@@ -89,9 +91,6 @@ def data_for_rs():
             else:
                 continue
     packages = sorted(packages, key=get_sort_key)
-
-
-
     return packages
 
 
@@ -171,10 +170,10 @@ def filter_get_and_read():
                     package_s[-3:] = package[-2:] + ["TRUE"]
                     package_s.insert(2, track)
                 elif "В пути" in package[-2] or "Отправл" in package[-2]:
-                    package_s[-3:] = package[-2] + [find_previous_tuesday_thursday(package[-1])] + ["ЛОЖЬ"]
+                    package_s[-3:] = package[-3:] + [find_previous_tuesday_thursday(package[-1])] + ["ЛОЖЬ"]
                     package_s.insert(2, track)
                 elif "Прибыл" in package[-2] or "Таможенн" in package[-2]:
-                    package_s[-3:] = package[-2] + [find_previous_tuesday_thursday(package[-1], 1)] + ["ЛОЖЬ"]
+                    package_s[-3:] = package[-3:] + [find_previous_tuesday_thursday(package[-1], 1)] + ["ЛОЖЬ"]
                     package_s.insert(2, track)
 
             elif package_s[-3] == "Готова к отправке":
@@ -189,7 +188,13 @@ def filter_get_and_read():
                 elif "В пути" in package[-2] or "Отправл" in package[-2]:
                     package_s[-3] = package[-2]
                     package_s.insert(2, track)
-            
+
+            elif "Прибыл" in package[-2] or "Таможенн" in package[-2]:
+                    package_s[-3] = package[-2]
+                    package_s[-2] = [find_previous_tuesday_thursday(package[-1], 1)]
+                    package_s.insert(2, track)        
+
+
             else:
                 package.insert(2, track)
                 package += ["FALSE"]
@@ -221,13 +226,6 @@ def filter_get_and_read():
 
     return done_packs
      
-
-
-#     for k,v in pack_sheets.items():
-#         print(k,': ',v) 
-
-# filter_get_and_read()
-
 
 
 
@@ -272,9 +270,6 @@ def write_to_table():
 
     wks.update(f'A26:F{26+len(packages)}', packages, value_input_option='USER_ENTERED')
 
-# table_architecht()
-# write_to_table()
-# filter_get_and_read()
 
 
 '''
