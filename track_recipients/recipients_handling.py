@@ -81,7 +81,7 @@ names = {
 
 def data_for_rs():
     packages=[]
-    get_data_from_accounts()
+    # get_data_from_accounts()
     for name in names:
         with open(f'track_package/html_pages/{name}.html', 'r+') as f:
             html_code = f.read()
@@ -191,7 +191,7 @@ def filter_get_and_read():
 
             elif "Прибыл" in package[-2] or "Таможенн" in package[-2]:
                     package_s[-3] = package[-2]
-                    package_s[-2] = [find_previous_tuesday_thursday(package[-1], 1)]
+                    package_s[-2] = find_previous_tuesday_thursday(package[-1], 1)
                     package_s.insert(2, track)        
 
 
@@ -238,14 +238,14 @@ def write_to_table():
 
     for package in packages:
         package_added = False  # Флаг, чтобы удостовериться, что пакет добавлен только один раз
-
+        # print(package)
         for coll_word, date_list in dates.items():
             if '+' in package[-3]:
                 problem_packs.append(package)
                 package_added = True
                 break  # Добавил break, чтобы выйти из внутреннего цикла, если условие выполнилось
                 
-            elif date_list[0].date() <= datetime.strptime(package[-2].strip(), '%Y-%m-%d').date() <= date_list[1].date():
+            elif date_list[0].date() <= datetime.strptime(package[-2].strip(), '%Y-%m-%d').date() <= date_list[1].date() and "Прибыл" not in package[-3]:
                 row_number = names[package[1]]
                 key = coll_word + row_number
                 done_packs.setdefault(key, []).append(package[0] + '\n')
@@ -270,7 +270,7 @@ def write_to_table():
 
     wks.update(f'A26:F{26+len(packages)}', packages, value_input_option='USER_ENTERED')
 
-
+# write_to_table()
 
 '''
 elif 'Готова к' in package[3]:
