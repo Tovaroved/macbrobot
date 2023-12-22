@@ -200,3 +200,5 @@ def data_for_tg():
             else:
                 continue
     return packages
+
+# print(data_for_tg())

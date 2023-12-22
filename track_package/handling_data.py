@@ -3,7 +3,7 @@ from datetime import datetime
 import re
 from datetime import datetime, timedelta
 from .utils import get_package_interval, is_date_in_current_week
-
+# from .requests_test import get_data_from_accounts
 
 
 def get_package_week(date, status):
@@ -40,6 +40,7 @@ def get_package_week(date, status):
             ##ToDo
 
         elif "Прибыла" in status:
+            print(status)
             if "cw: wed-fri" in part:
                 return "Current: part #1"
             
