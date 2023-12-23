@@ -17,6 +17,7 @@ def formatted_packages_list():
     next_total_p2 = 0
 
     for package_list in packages:
+        package_list[0] = package_list[0].split("|")[0]
         
         if package_list[-2] == 'Current: part #1':
             current_total_p1+=float(package_list[3])

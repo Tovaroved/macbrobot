@@ -1,6 +1,6 @@
 from bs4 import BeautifulSoup
 from .utils import get_sort_key, is_date_in_current_week, calculate_week_dates, find_previous_tuesday_thursday, get_sort_key2
-from track_package.requests_test import get_data_from_accounts
+# from track_package.requests_test import get_data_from_accounts
 import gspread
 from datetime import datetime
 
@@ -157,7 +157,7 @@ def filter_get_and_read():
         try: #Действия если товар уже записан
             package_s = pack_sheets[track]
             package_l = package_s[:-1]
-
+            
             if package == package_l:
                 package_s.insert(2, track)
 
@@ -194,35 +194,49 @@ def filter_get_and_read():
                     package_s[-2] = find_previous_tuesday_thursday(package[-1], 1)
                     package_s.insert(2, track)        
 
-
             else:
                 package.insert(2, track)
                 package += ["FALSE"]
                 done_packs.append(package)
+                del pack_sheets[track]
                 continue
             
+            del pack_sheets[track]
             done_packs.append(package_s)
+
 
         except KeyError:
             if package[-2] == "Ожидаем":
                 package += ["FALSE"]
+                package.insert(2,track)
+                done_packs.append(package)
 
             elif "Готова к отправ" in package[-2]:
                 package += ["TRUE"]
-            
+                package.insert(2,track)
+                done_packs.append(package)
+
             elif "Отправ" in package[-2] or "В пути" in package[-2]:
                 package[-1] = find_previous_tuesday_thursday(package[-1])
                 package += ["FALSE"]
+                package.insert(2,track)
+                done_packs.append(package)
 
             elif "Таможенное" in package[-2] or "Прибыл" in package[-2]:
                 package[-1] = find_previous_tuesday_thursday(package[-1],1)
                 package += ["FALSE"]
+                package.insert(2,track)
+                done_packs.append(package)
 
             elif '+' in package[-2]:
                 package += ["FALSE"]
-            
-            package.insert(2,track)
-            done_packs.append(package)
+                package.insert(2,track)
+                done_packs.append(package)
+    
+    if len(pack_sheets) != 0:
+        for track, pack in pack_sheets.items():
+            pack.insert(2, track)
+            done_packs.append(pack)
 
     return done_packs
      
@@ -270,35 +284,5 @@ def write_to_table():
 
     wks.update(f'A26:F{26+len(packages)}', packages, value_input_option='USER_ENTERED')
 
+# table_architecht()
 # write_to_table()
-
-'''
-elif 'Готова к' in package[3]:
-                package.insert(2, track)
-                done_packs.append(package+['TRUE'])
-
-            elif '+' in package[3]:
-                package.insert(2, track)
-                done_packs.append(package+['FALSE'])
-
-            elif all([package_s[3]=='Ожидаем', 'Готова к' not in package[3], "Прибыла" not in package[3]]):
-                package.insert(2,track)
-                print(package[-1]+[find_previous_tuesday_thursday(package[-1])]+['FALSE'], 'hello')
-                done_packs.append(package[-1]+[find_previous_tuesday_thursday(package[-1])]+['FALSE'])
-
-            else:
-                raise
-
-        except KeyError:
-            if "Готова к" in package[3]:
-                package.insert(2, track)
-                done_packs.append(package+['TRUE'])
-
-            elif any(["В пути" in package[3], "Отправл" in package[3]]):
-                package[:-1]+[find_previous_tuesday_thursday(package[-1])]+['FALSE']
-                done_packs.append(package)
-
-            elif package[3] == "Ожидаем" or '+' in package[3]:
-                done_packs.append(package.insert(2, track)+['FALSE'])
-    print(done_packs)
-    done_packs = sorted(done_packs, key=get_sort_key2)'''

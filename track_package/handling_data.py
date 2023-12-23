@@ -2,7 +2,7 @@ from bs4 import BeautifulSoup
 from datetime import datetime
 import re
 from datetime import datetime, timedelta
-from .utils import get_package_interval, is_date_in_current_week
+from .utils import get_package_interval, is_date_in_current_week, check_date_range
 # from .requests_test import get_data_from_accounts
 
 
@@ -39,12 +39,12 @@ def get_package_week(date, status):
             
             ##ToDo
 
-        elif "Прибыла" in status:
-            print(status)
-            if "cw: wed-fri" in part:
+        elif "Прибыла" in status and is_date_in_current_week(date):
+
+            if "cw: wed-fri" in check_date_range(date):
                 return "Current: part #1"
             
-            elif "cw: fri-wed" in part:
+            elif "cw: fri-wed" in check_date_range(date):
                 return "Current: part #2"
 
     else:
@@ -73,12 +73,11 @@ def get_formatted_data(account_html_code, name: str):
                 package_date = package.find('div', class_='text-xs text-gray-500').text.strip().replace('\n', '')[-10:]
 
                 package_desc = package_text[0].strip()
-
                 # package_price = package_text[1].strip()
 
                 package_amount = package_text[-1].strip()
 
-                date_of_receipt = get_package_week(package_date, package_status)
+                date_of_receipt = get_package_week(package_date.strip(), package_status)
 
             except AttributeError:
                 continue

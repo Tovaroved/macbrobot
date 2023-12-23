@@ -50,3 +50,21 @@ def is_date_in_current_week(input_date_str):
 
     # Check if the input date is within the current wee
     return current_week_start.date() <= input_date.date() <= current_week_end.date()
+
+def check_date_range(input_date):
+    # Преобразуем строку с датой в объект datetime
+    try:
+        date_obj = datetime.strptime(input_date, '%Y-%m-%d')
+    except ValueError:
+        return "Некорректный формат даты. Используйте yyyy-mm-dd."
+
+    # Получаем день недели (понедельник = 0, воскресенье = 6)
+    day_of_week = date_obj.weekday()
+
+    if 0 <= day_of_week <= 3:  # с понедельника до четверга
+        return "cw: wed-fri"
+    elif day_of_week in (4, 5, 6):  # пятница
+        return "cw: fri-wed"
+    else:
+        raise Exception
+    
