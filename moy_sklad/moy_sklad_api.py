@@ -1,24 +1,22 @@
 from moysklad.api import MoySklad
-from moysklad.queries import Expand, Filter, Ordering, Select, Search, Query
+from moysklad.queries import Filter, Query
+from decouple import config
 
 
-sklad = MoySklad.get_instance('admin@gun19', 'rolanddeschain19')
+sklad = MoySklad.get_instance(config('login'), config('password'))
 client = sklad.get_client()
 methods = sklad.get_methods()
 
 response = client.get(
-    method=methods.get_list_url('purchaseorder'),
-    # query=Query(
-    #     Filter().exists('email').eq('archived', False),
-    #     Search('петров'),
-    #     Expand('owner', 'owner.group'),
-    #     Ordering().asc('id').desc('name'),
-    #     Select(limit=1),
-    # ),
+    method=methods.get_list_url('move'),
+    query=Query(Filter().eq('applicable', False)
+    ),
 )
-# print(response.data)
 
-import json
 
-with open('moy_sklad/data.json' ,"w",) as f:
-    json.dump(response.data, f, indent=3, ensure_ascii=False)
+# with open('moy_sklad/data.py', 'w', encoding='utf8') as f:
+#     f.write(str(response.rows),)
+
+
+for document in response.rows:
+    print(document['description'].split('\n\n'))
