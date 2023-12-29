@@ -36,20 +36,13 @@ def get_package_interval(date):
 
 
 def is_date_in_current_week(input_date_str):
-    # Convert input string to datetime object
     input_date = datetime.strptime(input_date_str, '%Y-%m-%d')
-
-    # Get the current date
     current_date = datetime.now()
-
-    # Calculate the start of the current week (considering Monday as the start of the week)
     current_week_start = current_date - timedelta(days=current_date.weekday())
-
-    # Calculate the end of the current week
     current_week_end = current_week_start + timedelta(days=6)
-
-    # Check if the input date is within the current wee
     return current_week_start.date() <= input_date.date() <= current_week_end.date()
+
+
 
 def check_date_range(input_date):
     # Преобразуем строку с датой в объект datetime

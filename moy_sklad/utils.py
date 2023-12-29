@@ -20,4 +20,3 @@ def check_30_days_ago(input_date):
 input_date = input("Введите дату в формате yyyy-mm-dd: ")
 result = check_30_days_ago(input_date)
 print(result)
-23

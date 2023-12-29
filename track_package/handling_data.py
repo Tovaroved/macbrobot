@@ -25,6 +25,8 @@ def get_package_week(date, status):
                 return "Current: part #1"
             
             elif "lw: fri-wed" in part:
+                if is_date_in_current_week(date):
+                    return "Next: part #1"
                 return "Current: part #2"
             
             elif "cw: wed-fri" in part:

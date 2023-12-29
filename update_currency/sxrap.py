@@ -32,23 +32,23 @@ def get_rates():
     """Bakai"""
 
 
-    bakai = 'https://bakai.kg/ru/'
+    # bakai = 'https://bakai.kg/ru/'
 
-    driver.get(bakai)
+    # driver.get(bakai)
 
-    source = driver.page_source
+    # source = driver.page_source
 
-    soup = BeautifulSoup(source, 'lxml')
+    # soup = BeautifulSoup(source, 'lxml')
 
-    table_ = soup.find(attrs={'class':'tab_item', 'id':'non_cash_tab'})
+    # table_ = soup.find(attrs={'class':'tab_item', 'id':'non_cash_tab'})
 
-    rub = table_.find(attrs={'id':'currency_RUB'}).find('td', class_='currency_buy').text
+    # rub = table_.find(attrs={'id':'currency_RUB'}).find('td', class_='currency_buy').text
 
-    usd = table_.find(attrs={'id':'currency_USD'}).find('td', class_='currency_sell').text
+    # usd = table_.find(attrs={'id':'currency_USD'}).find('td', class_='currency_sell').text
 
-    all_banks_rate_data['bakai'] = [float(usd), float(rub)]
+    # all_banks_rate_data['bakai'] = [float(usd), float(rub)]
 
-    driver.close()
+    # driver.close()
 
 
     """Ayil"""
@@ -154,19 +154,19 @@ def get_rates():
     """KICB"""
 
 
-    kicb = 'https://kicb.net/welcome/'
+    # kicb = 'https://kicb.net/welcome/'
 
-    request = requests.get(kicb)
+    # request = requests.get(kicb)
 
-    soup = BeautifulSoup(request.text, 'lxml')
+    # soup = BeautifulSoup(request.text, 'lxml')
 
-    all_courses = soup.find('div', class_='curency').find_all('div', class_='con')[1].find_all('div', class_='cur_line')
+    # all_courses = soup.find('div', class_='curency').find_all('div', class_='con')[1].find_all('div', class_='cur_line')
 
-    rub = all_courses[3].find('div', class_='data2').text
+    # rub = all_courses[3].find('div', class_='data2').text
 
-    usd = all_courses[1].find('div', class_='data3').text
+    # usd = all_courses[1].find('div', class_='data3').text
 
-    all_banks_rate_data['kicb'] = [float(usd), float(rub)]
+    # all_banks_rate_data['kicb'] = [float(usd), float(rub)]
 
 
     return all_banks_rate_data
