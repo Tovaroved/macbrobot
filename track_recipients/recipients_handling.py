@@ -81,7 +81,6 @@ names = {
 
 def data_for_rs():
     packages=[]
-    # get_data_from_accounts()
     for name in names:
         with open(f'track_package/html_pages/{name}.html', 'r+') as f:
             html_code = f.read()
@@ -103,7 +102,7 @@ def table_architecht():
     """Подключаемся к документу"""
     sh = sa.open("MacPython")
 
-    """Подключаемся к странице и очищаем её"""
+    """Подключаемся к странице"""
     wks = sh.worksheet('Лист15')
 
     for k, v in dates.items():
@@ -122,7 +121,7 @@ def filter_get_and_read():
     """Подключаемся к документу"""
     sh = sa.open("MacPython")
 
-    """Подключаемся к странице и очищаем её"""
+    """Подключаемся к странице"""
     wks = sh.worksheet('Лист15')
 
     """Получение и чтение данных из аккаунтов LS и таблицы"""
@@ -148,13 +147,11 @@ def filter_get_and_read():
         except IndexError:
             continue
 
-
-    # print(pack_sheets)
     """Сравнение данных"""
 
     for track, package in pack_lifes.items():
 
-        try: #Действия если товар уже записан
+        try:
             package_s = pack_sheets[track]
             package_l = package_s[:-1]
             
@@ -248,23 +245,23 @@ def write_to_table():
     dates = calculate_week_dates()
     done_packs = {}
     problem_packs = []
-    remaining_packages = []  # Новый список для хранения оставшихся пакетов
+    remaining_packages = []  
 
     for package in packages:
-        package_added = False  # Флаг, чтобы удостовериться, что пакет добавлен только один раз
-        # print(package)
+        package_added = False 
+ 
         for coll_word, date_list in dates.items():
             if '+' in package[-3]:
                 problem_packs.append(package)
                 package_added = True
-                break  # Добавил break, чтобы выйти из внутреннего цикла, если условие выполнилось
+                break
                 
             elif date_list[0].date() <= datetime.strptime(package[-2].strip(), '%Y-%m-%d').date() <= date_list[1].date() and "Прибыл" not in package[-3]:
                 row_number = names[package[1]]
                 key = coll_word + row_number
                 done_packs.setdefault(key, []).append(package[0] + '\n')
                 package_added = True
-                break  # Также добавил break здесь
+                break
                 
         if not package_added:
             remaining_packages.append(package)
@@ -275,14 +272,14 @@ def write_to_table():
     """Подключаемся к документу"""
     sh = sa.open("MacPython")
 
-    """Подключаемся к странице и очищаем её"""
+    """Подключаемся к странице"""
     wks = sh.worksheet('Лист15')
     wks.batch_clear(["B2:L20", "A26:F55"])
 
     for coord, value in done_packs.items():
         wks.update(coord, ''.join(value))
 
-    wks.update(f'A26:F{26+len(packages)}', packages, value_input_option='USER_ENTERED')
+    wks.update(f'A26:F{26+len(packages)}', packages)
 
 # table_architecht()
 # write_to_table()

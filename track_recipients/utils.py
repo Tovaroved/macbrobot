@@ -88,11 +88,9 @@ def find_previous_tuesday_thursday(input_date, flag=None):
     date_format = "%Y-%m-%d"
     input_date = datetime.strptime(input_date, date_format)
 
-    # Найдем предыдущий вторник и четверг
     previous_tuesday = input_date - timedelta(days=(input_date.weekday() - 1) % 7)
     previous_thursday = input_date - timedelta(days=(input_date.weekday() - 3) % 7)
 
-    # Выберем тот, который ближе к введенной дате
     output_date = max(previous_tuesday, previous_thursday).strftime(date_format)
 
     if flag:
@@ -101,5 +99,3 @@ def find_previous_tuesday_thursday(input_date, flag=None):
         return new_date.strftime(date_format)
     else:
         return output_date
-    
-# print(find_previous_tuesday_thursday("2023-12-13", 1))

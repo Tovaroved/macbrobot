@@ -147,16 +147,13 @@ headers = {
 
 
 def get_data_from_accounts():
-    expiration_period = 7200
+    expiration_period = 3600
     current_time = time.time()
     for l, p, n, t, c in zip(logins1, passwords1, names1, tokens, cookies_):
 
-        # Путь к файлу для сохранения HTML-кода
         html_file_path = f'track_package/html_pages/{n}.html'
 
-        # Проверяем, существует ли файл
         if os.path.exists(html_file_path):
-            # Получаем время последней модификации файла
             file_modification_time = os.path.getmtime(html_file_path)
 
             """
@@ -166,7 +163,6 @@ def get_data_from_accounts():
             print("Last modification time(Local time):", local_time)
             """
 
-            # Проверяем, прошло ли менее expiration_period секунд с момента последней модификации файла
             if current_time - file_modification_time < expiration_period:
                 continue
 

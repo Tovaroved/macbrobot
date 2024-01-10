@@ -171,6 +171,3 @@ def get_rates():
 
     return all_banks_rate_data
 
-
-# get_rates()
-#/html/body/div[4]/section[3]/div/div[2]/div[1]/div/div/div/ul/li[2]/a
