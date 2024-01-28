@@ -3,10 +3,7 @@ from bs4 import BeautifulSoup
 from selenium import webdriver
 
 
-options = webdriver.ChromeOptions()
 
-options.add_argument('--headless')
-driver = webdriver.Chrome(options=options)
 
 
 all_banks_rate_data = {}
@@ -32,23 +29,27 @@ def get_rates():
     """Bakai"""
 
 
-    # bakai = 'https://bakai.kg/ru/'
+    bakai = 'https://bakai.kg/ru/'
+    """Create Web driver"""
+    options = webdriver.ChromeOptions()
+    options.add_argument('--headless')
+    driver = webdriver.Chrome(options=options)
 
-    # driver.get(bakai)
+    driver.get(bakai)
 
-    # source = driver.page_source
+    source = driver.page_source
 
-    # soup = BeautifulSoup(source, 'lxml')
+    soup = BeautifulSoup(source, 'lxml')
 
-    # table_ = soup.find(attrs={'class':'tab_item', 'id':'non_cash_tab'})
+    table_ = soup.find(attrs={'class':'tab_item', 'id':'non_cash_tab'})
 
-    # rub = table_.find(attrs={'id':'currency_RUB'}).find('td', class_='currency_buy').text
+    rub = table_.find(attrs={'id':'currency_RUB'}).find('td', class_='currency_buy').text
 
-    # usd = table_.find(attrs={'id':'currency_USD'}).find('td', class_='currency_sell').text
+    usd = table_.find(attrs={'id':'currency_USD'}).find('td', class_='currency_sell').text
 
-    # all_banks_rate_data['bakai'] = [float(usd), float(rub)]
-
-    # driver.close()
+    all_banks_rate_data['bakai'] = [float(usd), float(rub)]
+    print(float(usd), float(rub))
+    driver.close()
 
 
     """Ayil"""
@@ -136,10 +137,10 @@ def get_rates():
 
     json_ = soup.find('script', id='__NEXT_DATA__').text
 
-    with open('mbank.json', 'w') as f:
+    with open('update_currency/bank_files/mbank.json', 'w') as f:
         f.write(json_)
 
-    with open('mbank.json', 'r+') as f:
+    with open('update_currency/bank_files/mbank.json', 'r+') as f:
         data = json.loads(f.read())
 
     all_courses = data['props']['pageProps']['mainPage']['exchange']['cash_exchange'][1]['values']
@@ -154,20 +155,28 @@ def get_rates():
     """KICB"""
 
 
-    # kicb = 'https://kicb.net/welcome/'
+    # kicb = 'https://kicb.net/currency/?tab=non-cash#tab-list'
 
     # request = requests.get(kicb)
 
     # soup = BeautifulSoup(request.text, 'lxml')
 
-    # all_courses = soup.find('div', class_='curency').find_all('div', class_='con')[1].find_all('div', class_='cur_line')
-
-    # rub = all_courses[3].find('div', class_='data2').text
-
-    # usd = all_courses[1].find('div', class_='data3').text
-
+    # all_courses = soup.find('div', class_='exchange-table').find_all('tr')
+    
+    # try:
+    #     usd = all_courses[1].find_all('p', class_='val val_blue')[2].text.strip()
+    # except IndexError:
+    #     usd = all_courses[1].find_all('p', class_='val val_blue val_up')[1].text.strip()
+    
+    # try:
+    #     rub = all_courses[4].find_all('p', class_='val val_blue')[1].text.strip()
+    # except IndexError:
+    #     rub = all_courses[4].find_all('p', class_='val val_blue val_up')[0].text.strip()
+        
     # all_banks_rate_data['kicb'] = [float(usd), float(rub)]
-
 
     return all_banks_rate_data
 
+    
+
+# get_rates()

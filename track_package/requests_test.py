@@ -147,7 +147,7 @@ headers = {
 
 
 def get_data_from_accounts():
-    expiration_period = 3600
+    expiration_period = 36
     current_time = time.time()
     for l, p, n, t, c in zip(logins1, passwords1, names1, tokens, cookies_):
 

@@ -13,10 +13,13 @@ response = client.get(
     ),
 )
 
-
-# with open('moy_sklad/data.py', 'w', encoding='utf8') as f:
-#     f.write(str(response.rows),)
-
+products = {}
 
 for document in response.rows:
-    print(document['description'].split('\n\n'))
+    description = document['description'].split('\n\n')
+    for element in description:
+        if element.startwith('Отправле'):
+            send_date = element.split(':')[-1].strip
+            products[f'']
+
+
