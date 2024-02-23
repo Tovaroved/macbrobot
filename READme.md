@@ -10,3 +10,10 @@
 
 Stop
 `pkill python3`
+
+
+
+`sudo cp tgbot.service /etc/systemd/system/`
+
+Команда для запуска независимо от сервера
+`sudo systemctl start tgbot.service`

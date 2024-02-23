@@ -1,0 +1,13 @@
+[Unit]
+Description=Telegram bot for take some info
+After=multi-user.target
+
+[Service]
+Type=simple
+ExecStart=/home/macbookbrogoods/macbrobot/venv/bin/python /home/macbookbrogoods/macbrobot/telegrambro.py
+WorkingDirectory=/home/macbookbrogoods/macbrobot
+Restart=always
+Environment=HOME=/home/macbookbrogoods/macbrobot
+
+[Install]
+WantedBy=multi-user.target
