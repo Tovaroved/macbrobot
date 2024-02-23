@@ -279,7 +279,7 @@ def write_to_table():
     for coord, value in done_packs.items():
         wks.update(coord, ''.join(value))
 
-    wks.update(f'A26:F{26+len(packages)}', packages)
+    wks.update(f'A26:F{26+len(packages)}', packages, value_input_option='USER_ENTERED')
 
 # table_architecht()
 # write_to_table()
