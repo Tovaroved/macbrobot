@@ -153,18 +153,18 @@ def get_data_from_accounts():
 
         html_file_path = f'track_package/html_pages/{n}.html'
 
-        if os.path.exists(html_file_path):
-            file_modification_time = os.path.getmtime(html_file_path)
+        # if os.path.exists(html_file_path):
+        #     file_modification_time = os.path.getmtime(html_file_path)
 
-            """
-            Посмотреть время последнего изменения html файлов
+        #     """
+        #     Посмотреть время последнего изменения html файлов
 
-            local_time = time.ctime(file_modification_time)
-            print("Last modification time(Local time):", local_time)
-            """
+        #     local_time = time.ctime(file_modification_time)
+        #     print("Last modification time(Local time):", local_time)
+        #     """
 
-            if current_time - file_modification_time < expiration_period:
-                continue
+        #     if current_time - file_modification_time < expiration_period:
+        #         continue
 
         data = {
             "authenticity_token": t,

@@ -11,9 +11,17 @@
 Stop
 `pkill python3`
 
-
-
-`sudo cp tgbot.service /etc/systemd/system/`
-
 Команда для запуска независимо от сервера
 `sudo systemctl start tgbot.service`
+
+Команда для просмотра статуса бота
+`sudo systemctl status tgbot.service`
+
+
+Команды ниже исключительно для понимания)
+`sudo cp tgbot.service /etc/systemd/system/`
+`(sudo ln -s ./tgbot.service /etc/systemd/system/tgbot.service)`
+
+`sudo journalctl -u tgbot.service`
+
+`sudo systemctl daemon-reload`
