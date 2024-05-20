@@ -55,13 +55,10 @@ def currentOneBot(message):
   info = formatted_packages_list()
   first_mess = info[2]
 
-  response = requests.post(shipper_api, json={'week': 'current'})
-  print(response.text)
-  print(type(response.text))
-
+  response = requests.post("http://34.141.29.166/shipper/packages", json={'week': 'current'})
   second_mess_shipper = response.json()
 
-
+  first_mess+='\n\n########################'
   first_mess+=f"\n\n{second_mess_shipper['message']}"
 
   macbrobot.send_message(message.chat.id, first_mess, parse_mode='html')
@@ -70,6 +67,13 @@ def currentOneBot(message):
 def currentTwoBot(message):
   info = formatted_packages_list()
   first_mess = info[0]
+
+  response = requests.post("http://34.141.29.166/shipper/packages", json={'week': 'current'})
+  second_mess_shipper = response.json()
+
+  first_mess+='\n\n########################'
+  first_mess+=f"\n\n{second_mess_shipper['message']}"
+
   macbrobot.send_message(message.chat.id, first_mess, parse_mode='html')
 
 
@@ -87,12 +91,27 @@ def nextBot(message):
 def currentOne2Bot(message):
   info = formatted_packages_list()
   first_mess = info[-1]
+
+  response = requests.post("http://34.141.29.166/shipper/packages", json={'week': 'next'})
+  second_mess_shipper = response.json()
+
+  first_mess+='\n\n########################'
+  first_mess+=f"\n\n{second_mess_shipper['message']}"
+
   macbrobot.send_message(message.chat.id, first_mess, parse_mode='html')
 
 @macbrobot.message_handler(commands=['twoparts2'])
 def currentTwo2Bot(message):
   info = formatted_packages_list()
   first_mess = info[1]
+
+  response = requests.post("http://34.141.29.166/shipper/packages", json={'week': 'next'})
+  second_mess_shipper = response.json()
+
+  first_mess+='\n\n########################'
+  first_mess+=f"\n\n{second_mess_shipper['message']}"
+
+
   macbrobot.send_message(message.chat.id, first_mess, parse_mode='html')
 
 
