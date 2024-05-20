@@ -1,11 +1,14 @@
 import telebot
 from telebot import types
+import requests
+
 from update_currency.sxrt import main
 from track_package.formatting import formatted_packages_list, gsheet_package
 from track_recipients.recipients_handling import table_architecht, write_to_table
 from decouple import config
 
 BOT_TOKEN=config('BOT_TOKEN')
+shipper_api=config('SHIPPER_API')
 
 macbrobot = telebot.TeleBot(BOT_TOKEN)
 
@@ -51,6 +54,12 @@ def currentBot(message):
 def currentOneBot(message):
   info = formatted_packages_list()
   first_mess = info[2]
+
+  response = requests.post(shipper_api, json={'week': 'current'})
+  second_mess_shipper = response.json()['message']
+
+  first_mess+=f"\n\n{second_mess_shipper}"
+
   macbrobot.send_message(message.chat.id, first_mess, parse_mode='html')
 
 @macbrobot.message_handler(commands=['twoparts'])
