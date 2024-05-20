@@ -56,9 +56,10 @@ def currentOneBot(message):
   first_mess = info[2]
 
   response = requests.post(shipper_api, json={'week': 'current'})
-  second_mess_shipper = response.json()['message']
+  second_mess_shipper = response.json()
 
-  first_mess+=f"\n\n{second_mess_shipper}"
+
+  first_mess+=f"\n\n{second_mess_shipper['message']}"
 
   macbrobot.send_message(message.chat.id, first_mess, parse_mode='html')
 
