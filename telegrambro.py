@@ -56,6 +56,9 @@ def currentOneBot(message):
   first_mess = info[2]
 
   response = requests.post(shipper_api, json={'week': 'current'})
+  print(response.text)
+  print(type(response.text))
+
   second_mess_shipper = response.json()
 
 
