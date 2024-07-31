@@ -55,7 +55,7 @@ def currentOneBot(message):
   info = formatted_packages_list()
   first_mess = info[2]
 
-  response = requests.post("http://34.141.29.166/shipper/packages", json={'week': 'current'})
+  response = requests.post("http://34.159.48.39/shipper/packages", json={'week': 'current'})
   second_mess_shipper = response.json()
 
   first_mess+='\n\n########################'
@@ -68,7 +68,7 @@ def currentTwoBot(message):
   info = formatted_packages_list()
   first_mess = info[0]
 
-  response = requests.post("http://34.141.29.166/shipper/packages", json={'week': 'current'})
+  response = requests.post("http://34.159.48.39/shipper/packages", json={'week': 'current'})
   second_mess_shipper = response.json()
 
   first_mess+='\n\n########################'
@@ -92,7 +92,7 @@ def currentOne2Bot(message):
   info = formatted_packages_list()
   first_mess = info[-1]
 
-  response = requests.post("http://34.141.29.166/shipper/packages", json={'week': 'next'})
+  response = requests.post("http://34.159.48.39/shipper/packages", json={'week': 'next'})
   second_mess_shipper = response.json()
 
   first_mess+='\n\n########################'
@@ -105,7 +105,7 @@ def currentTwo2Bot(message):
   info = formatted_packages_list()
   first_mess = info[1]
 
-  response = requests.post("http://34.141.29.166/shipper/packages", json={'week': 'next'})
+  response = requests.post("http://34.159.48.39/shipper/packages", json={'week': 'next'})
   second_mess_shipper = response.json()
 
   first_mess+='\n\n########################'
