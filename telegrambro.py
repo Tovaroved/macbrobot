@@ -55,11 +55,11 @@ def currentOneBot(message):
   info = formatted_packages_list()
   first_mess = info[2]
 
-  # response = requests.post("http://34.159.48.39/shipper/packages", json={'week': 'current'})
-  # second_mess_shipper = response.json()
+  response = requests.post("http://34.159.48.39/shipper/packages", json={'week': 'current'})
+  second_mess_shipper = response.json()
 
-  # first_mess+='\n\n########################'
-  # first_mess+=f"\n\n{second_mess_shipper['message']}"
+  first_mess+='\n\n########################'
+  first_mess+=f"\n\n{second_mess_shipper['message']}"
 
   macbrobot.send_message(message.chat.id, first_mess, parse_mode='html')
 
@@ -68,11 +68,11 @@ def currentTwoBot(message):
   info = formatted_packages_list()
   first_mess = info[0]
 
-  # response = requests.post("http://34.159.48.39/shipper/packages", json={'week': 'current'})
-  # second_mess_shipper = response.json()
+  response = requests.post("http://34.159.48.39/shipper/packages", json={'week': 'current'})
+  second_mess_shipper = response.json()
 
-  # first_mess+='\n\n########################'
-  # first_mess+=f"\n\n{second_mess_shipper['message']}"
+  first_mess+='\n\n########################'
+  first_mess+=f"\n\n{second_mess_shipper['message']}"
 
   macbrobot.send_message(message.chat.id, first_mess, parse_mode='html')
 
@@ -92,11 +92,11 @@ def currentOne2Bot(message):
   info = formatted_packages_list()
   first_mess = info[-1]
 
-  # response = requests.post("http://34.159.48.39/shipper/packages", json={'week': 'next'})
-  # second_mess_shipper = response.json()
+  response = requests.post("http://34.159.48.39/shipper/packages", json={'week': 'next'})
+  second_mess_shipper = response.json()
 
-  # first_mess+='\n\n########################'
-  # first_mess+=f"\n\n{second_mess_shipper['message']}"
+  first_mess+='\n\n########################'
+  first_mess+=f"\n\n{second_mess_shipper['message']}"
 
   macbrobot.send_message(message.chat.id, first_mess, parse_mode='html')
 
@@ -105,11 +105,11 @@ def currentTwo2Bot(message):
   info = formatted_packages_list()
   first_mess = info[1]
 
-  # response = requests.post("http://34.159.48.39/shipper/packages", json={'week': 'next'})
-  # second_mess_shipper = response.json()
+  response = requests.post("http://34.159.48.39/shipper/packages", json={'week': 'next'})
+  second_mess_shipper = response.json()
 
-  # first_mess+='\n\n########################'
-  # first_mess+=f"\n\n{second_mess_shipper['message']}"
+  first_mess+='\n\n########################'
+  first_mess+=f"\n\n{second_mess_shipper['message']}"
 
 
   macbrobot.send_message(message.chat.id, first_mess, parse_mode='html')
