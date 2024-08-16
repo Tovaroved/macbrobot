@@ -166,7 +166,7 @@ def currentBot(message):
   rep_markup2 = types.ReplyKeyboardMarkup(resize_keyboard=True)
   rep_markup2.add(types.KeyboardButton('/pack'))
   rep_markup2.add(types.KeyboardButton('/start'))
-  requests.get("http://34.159.48.39/gsheet/")
+  requests.get("http://34.159.48.39/gsheet")
 
 if __name__ == '__main__':
   macbrobot.infinity_polling()
