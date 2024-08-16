@@ -18,6 +18,7 @@ def startBot(message):
   rep_markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
   rep_markup.add(types.KeyboardButton('/rates'))
   rep_markup.add(types.KeyboardButton('/pack'))
+  rep_markup.add(types.KeyboardButton('/prices'))
   macbrobot.send_message(message.chat.id, first_mess, parse_mode='html', reply_markup=rep_markup)
 
 @macbrobot.message_handler(commands=['rates'])
@@ -159,6 +160,13 @@ def recipientsBot(message):
   rep_markup2.add(types.KeyboardButton('/start'))
 
   macbrobot.send_message(message.chat.id, first_mess, parse_mode='html',reply_markup=rep_markup2)
+
+@macbrobot.message_handler(commands=['prices'])
+def currentBot(message):
+  rep_markup2 = types.ReplyKeyboardMarkup(resize_keyboard=True)
+  rep_markup2.add(types.KeyboardButton('/pack'))
+  rep_markup2.add(types.KeyboardButton('/start'))
+  requests.get("http://34.159.48.39/gsheet/")
 
 if __name__ == '__main__':
   macbrobot.infinity_polling()
